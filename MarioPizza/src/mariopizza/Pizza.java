@@ -6,10 +6,11 @@ import java.util.ArrayList;
 
 public class Pizza {
     int nummer;
-    int navn;
+    String navn;
+    int pris;
     ArrayList <Fyld> fyld = new ArrayList();
 
-    public Pizza(int nummer, int navn) {
+    public Pizza(int nummer, String navn, int pris) {
         this.nummer = nummer;
         this.navn = navn;
     }
