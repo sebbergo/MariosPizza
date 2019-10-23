@@ -14,5 +14,10 @@ public class Main {
         menukort.addPizza(tomat);
         
         Menukort.printPizza();
+        System.out.println("");
+        
+        Bestilling bes1 = new Bestilling("10:30", "1,2,1,1,1");
+        bes1.printBes();
+
     }
 }

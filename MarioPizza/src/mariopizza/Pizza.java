@@ -25,6 +25,14 @@ public class Pizza {
     public void setFyld(String fyld) {
         this.fyld = fyld;
     }
+
+    public String getNavn() {
+        return navn;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
     
     //Pizza pep = new pizza(14, asdasda);
 

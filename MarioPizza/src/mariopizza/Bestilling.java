@@ -18,6 +18,12 @@ public class Bestilling {
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
             }
         }
+    
+    public void printBes(){
+        for(Pizza p: pizza){
+            System.out.println(p.getNavn());
+        }
+    }
     }
     //Bestilling("18:30", "14,1,10,10");
 
