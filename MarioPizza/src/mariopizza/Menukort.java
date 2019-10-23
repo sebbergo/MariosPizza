@@ -3,5 +3,5 @@ package mariopizza;
 
 
 public class Menukort {
-ostelort og pis
+ostelort og pis og røvsnavs
 }
