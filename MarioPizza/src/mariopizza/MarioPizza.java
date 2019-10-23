@@ -2,7 +2,6 @@ package mariopizza;
 
 import java.util.ArrayList;
 
-
 public class MarioPizza {
     ArrayList <Bestilling> bestillinger = new ArrayList();
     

@@ -9,11 +9,13 @@ public class Pizza {
     String navn;
     int pris;
     String fyld;
+    static int Counter = 1;
 
-    public Pizza(int nummer, String navn, int pris, String fyld) {
-        this.nummer = nummer;
+    public Pizza(String navn, int pris, String fyld) {
         this.navn = navn;
         this.fyld = fyld;
+        nummer = Counter;
+        Counter++;
     }
     
     //Pizza pep = new pizza(14, asdasda);

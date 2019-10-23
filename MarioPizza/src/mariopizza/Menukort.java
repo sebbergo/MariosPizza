@@ -6,10 +6,16 @@ import java.util.ArrayList;
 
 public class Menukort {
     static ArrayList <Pizza> allePizzaer = new ArrayList();
-    Pizza pep = new Pizza(1,"pep",100,"Tomat, Pep, ost");
-    Pizza ost = new Pizza(2,"ost",90,"Tomat, ost");
-    Pizza tomat = new Pizza(3,"tomat",80,"Tomat");
+
+    public void addPizza(Pizza pizza){
+        allePizzaer.add(pizza);
+    }
     
+    public static void printPizza(){
+        for(Pizza pizza: allePizzaer){
+            System.out.println(pizza.getNummer());
+        }
+    }
     
     
     public static Pizza pizzaChecker(int nummer){
