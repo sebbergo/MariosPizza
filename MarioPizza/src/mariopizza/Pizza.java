@@ -17,6 +17,14 @@ public class Pizza {
         nummer = Counter;
         Counter++;
     }
+
+    public String getFyld() {
+        return fyld;
+    }
+
+    public void setFyld(String fyld) {
+        this.fyld = fyld;
+    }
     
     //Pizza pep = new pizza(14, asdasda);
 
