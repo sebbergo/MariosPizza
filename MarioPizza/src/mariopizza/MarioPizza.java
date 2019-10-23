@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 
 public class MarioPizza {
-    ArrayList <Bestillinger> bestillinger = new ArrayList();
+    ArrayList <Bestilling> bestillinger = new ArrayList();
     
-    
+    public void addBestilling(Bestilling bestilling){
+        bestillinger.add(bestilling);
+    }
+        
 }

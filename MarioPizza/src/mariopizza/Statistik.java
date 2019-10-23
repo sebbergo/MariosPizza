@@ -5,5 +5,5 @@ import java.util.ArrayList;
 
 
 public class Statistik {
-    ArrayList <Bestillinger> bestillinger = new ArrayList();
+    ArrayList <Bestilling> bestillinger = new ArrayList();
 }
