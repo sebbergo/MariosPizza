@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 
 public class Bestilling {
-    String tid;
-    ArrayList <Pizza> pizza = new ArrayList();
+    private String tid;
+    private ArrayList <Pizza> pizza = new ArrayList();
 
     public Bestilling(String tid, String pizzaNummer) {
         this.tid = tid;

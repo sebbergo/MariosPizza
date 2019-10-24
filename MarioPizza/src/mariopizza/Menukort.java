@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Menukort {
 
-    static ArrayList<Pizza> allePizzaer = new ArrayList();
+    private static ArrayList<Pizza> allePizzaer = new ArrayList();
 
     public Menukort() {
         String filename = "Data/Pizzaer.csv";

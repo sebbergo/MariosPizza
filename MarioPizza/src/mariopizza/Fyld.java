@@ -1,7 +1,7 @@
 package mariopizza;
 
 public class Fyld {
-    String type;
+   private  String type;
 
     public Fyld(String type) {
         this.type = type;

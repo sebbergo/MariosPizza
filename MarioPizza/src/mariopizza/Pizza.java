@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 
 public class Pizza {
-    int nummer;
-    String navn;
-    int pris;
-    String fyld;
-    static int Counter = 1;
+    private int nummer;
+    private String navn;
+    private int pris;
+    private String fyld;
+    private static int Counter = 1;
 
     public Pizza(String navn, int pris, String fyld) {
         this.navn = navn;
