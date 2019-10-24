@@ -6,19 +6,19 @@ import java.util.ArrayList;
 
 public class Statistik {
     private  ArrayList <Bestilling> bestillinger = new ArrayList();
-    private  ArrayList <Kunde> kunder = new ArrayList();
+    private static  ArrayList <Kunde> kunder = new ArrayList();
     
     public void addKunde(Kunde kunde){
         kunder.add(kunde);
     }
 
-    public boolean checkKunde(int tlfnr){
+    public static Kunde checkKunde(int tlfnr){
         for (Kunde kunde: kunder) {
             if(kunde.getNummer() == tlfnr){
-                return false;
+                return kunde;
             }
         }
-        return true;
+        return null;
     }
     
     public void addBestilling(Bestilling bestilling){

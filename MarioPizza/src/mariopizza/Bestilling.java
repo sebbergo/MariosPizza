@@ -9,11 +9,15 @@ public class Bestilling {
     private ArrayList <Pizza> pizza = new ArrayList();
     private Kunde kunde;
     
+    
     public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
-        this.kunde = kunde;
         this.tid = tid;
         
-        Kunde kunde = new Kunde(tlfnr, navn);
+        if(Statistik.checkKunde(tlfnr) == null){
+            kunde = new Kunde(tlfnr, navn);
+        }else{
+            Statistik.checkKunde(tlfnr).setNavn(navn);
+        }
         
         String[] pizzaer = pizzaNummer.split(",");
         int[] pizzaerNummer = new int [pizzaer.length];
