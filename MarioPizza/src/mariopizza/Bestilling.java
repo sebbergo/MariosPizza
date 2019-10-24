@@ -19,11 +19,23 @@ public class Bestilling {
             }
         }
     
-    public void printBes(){
+    public String printBes(){
+        String retVal = "Pizzatype: ";
         for(Pizza p: pizza){
-            System.out.println(p.getNavn());
+            retVal += p.getNavn() + ",";
         }
+        return retVal;
     }
+
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+    
+    
     }
     //Bestilling("18:30", "14,1,10,10");
 
