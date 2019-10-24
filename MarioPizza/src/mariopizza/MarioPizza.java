@@ -17,7 +17,9 @@ public class MarioPizza {
         Menukort.printPizza();
         System.out.println("");
         
-        Bestilling bes1 = new Bestilling("10:30", "1,2,1,1,1");
+        Kunde kunde1 = new Kunde(81924185, "Ali");
+        
+        Bestilling bes1 = new Bestilling("10:30", "1,2,1,1,1", kunde1);
         Statistik stat = new Statistik();
         stat.addBestilling(bes1);
         stat.printBestilling();

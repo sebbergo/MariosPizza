@@ -7,9 +7,14 @@ import java.util.ArrayList;
 public class Bestilling {
     private String tid;
     private ArrayList <Pizza> pizza = new ArrayList();
-
-    public Bestilling(String tid, String pizzaNummer) {
+    private Kunde kunde;
+    
+    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
+        this.kunde = kunde;
         this.tid = tid;
+        
+        Kunde kunde = new Kunde(tlfnr, navn);
+        
         String[] pizzaer = pizzaNummer.split(",");
         int[] pizzaerNummer = new int [pizzaer.length];
         
@@ -34,6 +39,15 @@ public class Bestilling {
     public void setTid(String tid) {
         this.tid = tid;
     }
+
+    public Kunde getKunde() {
+        return kunde;
+    }
+
+    public void setKunde(Kunde kunde) {
+        this.kunde = kunde;
+    }
+    
     
     
     }
