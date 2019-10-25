@@ -8,10 +8,12 @@ public class Bestilling {
     private String tid;
     private ArrayList <Pizza> pizza = new ArrayList();
     private Kunde kunde;
-    
+    private int id;
+    private static int counter;
     
     public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
         this.tid = tid;
+        this.id = ++counter; 
         
         if(Statistik.checkKunde(tlfnr) == null){
             kunde = new Kunde(tlfnr, navn);
@@ -33,6 +35,7 @@ public class Bestilling {
     public Bestilling(String tid, String pizzaNummer, String navn) {
         this.tid = tid;
         this.kunde = new Kunde( navn);
+        this.id = ++counter;
         
         String[] pizzaer = pizzaNummer.split(",");
         int[] pizzaerNummer = new int [pizzaer.length];
@@ -43,8 +46,6 @@ public class Bestilling {
             }
         }
     
-    
-    
     public String printBes(){
         String retVal = "Pizzatype: ";
         for(Pizza p: pizza){
@@ -53,6 +54,15 @@ public class Bestilling {
         return retVal;
     }
 
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getTid() {
         return tid;
     }
