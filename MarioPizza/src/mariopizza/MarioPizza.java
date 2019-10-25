@@ -23,6 +23,7 @@ public class MarioPizza {
         
         stat.printBestillingStat();
         
+        Controller.run();
 
     }
 }
