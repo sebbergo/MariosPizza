@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Statistik {
 
-    private ArrayList<Bestilling> bestillingerStat = new ArrayList();
-    private ArrayList<Bestilling> bestillinger = new ArrayList();
+    private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
+    private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
 
     public void addKunde(Kunde kunde) {
@@ -21,28 +21,37 @@ public class Statistik {
         return null;
     }
 
-    public void addBestilling(Bestilling bestilling) {
+    public static void addBestilling(Bestilling bestilling) {
         bestillinger.add(bestilling);
     }
 
-    public void removeBestilling(Bestilling bestilling) {
+    public static void removeBestilling(Bestilling bestilling) {
         bestillinger.remove(bestilling);
     }
 
-    public void printBestilling() {
+    public static void printBestilling() {
         for (Bestilling bestilling : bestillinger) {
             System.out.println(bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
         }
     }
 
-    public void addBestillingStat(Bestilling bestilling) {
+    public static void addBestillingStat(Bestilling bestilling) {
         bestillingerStat.add(bestilling);
     }
 
-    public void printBestillingStat() {
+    public static void printBestillingStat() {
         for (Bestilling bestillingStat : bestillingerStat) {
             System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn());
 
         }
+    }
+    
+    public static Bestilling bestillingChecker(int id) {
+        for (Bestilling bes : bestillinger) {
+            if (bes.getId() == id) {
+                return bes;
+            }
+        }
+        return null;
     }
 }
