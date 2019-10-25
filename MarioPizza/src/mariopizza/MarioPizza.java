@@ -3,15 +3,12 @@ package mariopizza;
 import java.util.ArrayList;
 
 public class MarioPizza {
-    public static void main(String[] args) {
-
-        
+    public static void main(String[] args) {      
         Menukort menukort = new Menukort();
         
         Menukort.printPizza();
-        System.out.println("");
         
-        Kunde kunde1 = new Kunde(81924185, "Ali");
+        System.out.println("");
         
         Controller.tilføjBestilling("10:30", "1,2,1,1,1", "Preben", 0);
         Controller.tilføjBestilling("10:30", "1,2,1,1,1", "Preben", 0);
