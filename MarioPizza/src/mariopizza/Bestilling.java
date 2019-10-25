@@ -25,8 +25,25 @@ public class Bestilling {
         for(int i = 0; i < pizzaer.length; i++){
             pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
+            
             }
         }
+
+  
+    public Bestilling(String tid, String pizzaNummer, String navn) {
+        this.tid = tid;
+        this.kunde = new Kunde( navn);
+        
+        String[] pizzaer = pizzaNummer.split(",");
+        int[] pizzaerNummer = new int [pizzaer.length];
+        
+        for(int i = 0; i < pizzaer.length; i++){
+            pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
+            pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
+            }
+        }
+    
+    
     
     public String printBes(){
         String retVal = "Pizzatype: ";

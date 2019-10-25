@@ -1,13 +1,16 @@
-
 package mariopizza;
 
-
 public class Kunde {
+
     int nummer;
     String navn;
 
     public Kunde(int nummer, String navn) {
         this.nummer = nummer;
+        this.navn = navn;
+    }
+
+    public Kunde(String navn) {
         this.navn = navn;
     }
 
@@ -26,5 +29,5 @@ public class Kunde {
     public void setNavn(String navn) {
         this.navn = navn;
     }
-    
+
 }

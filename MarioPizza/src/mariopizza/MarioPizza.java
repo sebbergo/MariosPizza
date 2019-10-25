@@ -24,7 +24,8 @@ public class MarioPizza {
         Statistik stat = new Statistik();
         stat.addBestilling(bes1);
         stat.addBestilling(bes2);
-        stat.printBestilling();
+        
+        stat.printBestillingStat();
         System.out.println("");
         bes1.printBes();
         
