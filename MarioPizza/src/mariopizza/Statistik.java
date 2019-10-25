@@ -31,7 +31,7 @@ public class Statistik {
 
     public static void printBestilling() {
         for (Bestilling bestilling : bestillinger) {
-            System.out.println(bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
+            System.out.println(bestilling.getTid() + " , " + bestilling.printBes() + " Kunde:" + bestilling.getKunde().getNavn() + "Telefon: " + bestilling.getKunde().getNummer());
         }
     }
 
@@ -41,7 +41,7 @@ public class Statistik {
 
     public static void printBestillingStat() {
         for (Bestilling bestillingStat : bestillingerStat) {
-            System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn());
+            System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn() + "Telefon: " + bestillingStat.getKunde().getNummer());
 
         }
     }
