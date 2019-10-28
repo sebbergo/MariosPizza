@@ -30,7 +30,9 @@ public class Controller {
                     
                     break;
                 case 2:
-                    System.out.println("Tuesday");
+                    int bestillingId = getUserNumber("Skriv id på den bestilling du ønsker at fjerne");
+                    fjernBestilling(bestillingId);
+                    
                     break;
                 case 3:
                     System.out.println("Wednesday");
