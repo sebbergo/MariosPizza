@@ -43,15 +43,16 @@ public class Controller {
                     Menukort.gemCsv();
                     break;
                 case 4:
-                    System.out.println("Thursday");
+                    Menukort.printPizza();
+                    int pizzaId = getUserNumber("Skriv nummer på pizza du ønsker at slette");
+                    Menukort.sletLine(pizzaId);
                     break;
                 case 5:
                     System.out.println("Friday");
                     break;
                 //Valgmulighed 6 lukker programmet    
                 case 6:
-                    exitValue = false;
-                    System.out.println("Program lukker!");
+                    Menukort.printMenukort();
                     break;
                 case 7:
                     exitValue = false;

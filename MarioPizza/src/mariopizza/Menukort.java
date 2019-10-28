@@ -89,9 +89,10 @@ public class Menukort {
 
     public static void printPizza() {
         for (Pizza pizza : allePizzaer) {
-            System.out.println(pizza.getFyld());
+            System.out.println(pizza.getNummer()+": " + pizza.getNavn());
         }
     }
+    
 
     public static Pizza pizzaChecker(int nummer) {
         for (Pizza pizza : allePizzaer) {
@@ -102,8 +103,15 @@ public class Menukort {
         return null;
     }
 
-    public void readFile(String filename) {
-
+    
+    public static void printMenukort() {
+        String pizzaPrint = "";
+        for (Pizza pizza : allePizzaer) {
+            pizzaPrint = pizza.getNummer() + ": " + pizza.getNavn() + ", " + pizza.getFyld();
+            System.out.println(pizzaPrint);
+        }
     }
+
+    
 
 }
