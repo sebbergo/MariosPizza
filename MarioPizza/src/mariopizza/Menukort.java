@@ -3,15 +3,16 @@ package mariopizza;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menukort {
 
     private static ArrayList<Pizza> allePizzaer = new ArrayList();
-
+    private String filename = "Data/Pizzaer.csv";
     public Menukort() {
-        String filename = "Data/Pizzaer.csv";
               File file = new File(filename);
         try {
             Scanner myScanner = new Scanner(file);
@@ -31,6 +32,28 @@ public class Menukort {
         }
     }
 
+    public void addPizzaToCsv(String navn, int pris, String fyld){
+        Pizza pizza = new Pizza(navn, pris, fyld);
+        allePizzaer.add(pizza);
+        
+    
+    }
+    
+    public void gemCsv() throws IOException{
+        File file = new File(filename);
+        FileWriter fw = new FileWriter(file);
+        for (Pizza pizza : allePizzaer) {
+        fw.write(pizza.getNavn()+";");
+        fw.write(pizza.getPris()+";");
+        String[] fyld = pizza.getFyld().split(",");
+        for(int i=0;i<fyld.length;i++){
+            fw.write(fyld[i]+";");
+        }
+        fw.write("\n");
+        }
+        fw.close();
+
+    }
     public void makePizza(String navn, int pris,String[] fyld){
         
         String fyldString = "";

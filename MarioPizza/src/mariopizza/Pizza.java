@@ -14,10 +14,19 @@ public class Pizza {
     public Pizza(String navn, int pris, String fyld) {
         this.navn = navn;
         this.fyld = fyld;
+        this.pris = pris;
         nummer = Counter;
         Counter++;
     }
 
+    public int getPris() {
+        return pris;
+    }
+
+    public void setPris(int pris) {
+        this.pris = pris;
+    }
+    
     public String getFyld() {
         return fyld;
     }
