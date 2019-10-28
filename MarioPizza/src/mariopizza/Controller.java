@@ -14,9 +14,10 @@ public class Controller {
                     "Skriv 1 for at lave ny bestilling\n" + 
                     "Skriv 2 for at slette en bestilling\n" +
                     "Skriv 3 for at tilføje en ny pizza\n" +
-                    "Skriv 4 for at se statistik\n" + 
-                    "Skriv 5 for at se menukort\n" +
-                    "Skriv 6 for at lukke programmet");
+                    "Skriv 4 for at slette en pizza\n" +
+                    "Skriv 5 for at se statistik\n" + 
+                    "Skriv 6 for at se menukort\n" +
+                    "Skriv 7 for at lukke programmet");
             switch (cases) {
                 //valg mulighed 1 til at lave en pizza
                 case 1:
@@ -49,6 +50,10 @@ public class Controller {
                     break;
                 //Valgmulighed 6 lukker programmet    
                 case 6:
+                    exitValue = false;
+                    System.out.println("Program lukker!");
+                    break;
+                case 7:
                     exitValue = false;
                     System.out.println("Program lukker!");
                     break;

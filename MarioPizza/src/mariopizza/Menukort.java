@@ -37,6 +37,31 @@ public class Menukort {
         }
     }
 
+    public static void sletLine(int line) {
+        File file = new File(filename);
+        FileWriter fw;
+        int currentLine = 0;
+        try {
+            fw = new FileWriter(file);
+            for (Pizza pizza : allePizzaer) {
+                currentLine++;
+                if (currentLine != line) {
+                    fw.write(pizza.getNavn() + ";");
+                    fw.write(pizza.getPris() + ";");
+                    String[] fyld = pizza.getFyld().split(",");
+                    for (int i = 0; i < fyld.length; i++) {
+                        fw.write(fyld[i] + ";");
+                    }
+                    fw.write("\n");
+                } 
+            }
+            fw.close();
+            removePizza(line);
+        } catch (IOException ex) {
+            Logger.getLogger(Menukort.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static void addPizzaToCsv(String navn, int pris, String fyld) {
         Pizza pizza = new Pizza(navn, pris, fyld);
         allePizzaer.add(pizza);
@@ -74,8 +99,12 @@ public class Menukort {
         addPizza(pep);
     }
 
-    public void addPizza(Pizza pizza) {
+    public static void addPizza(Pizza pizza) {
         allePizzaer.add(pizza);
+    }
+    
+    public static void removePizza(int id){
+        allePizzaer.remove(pizzaChecker(id));
     }
 
     public static void printPizza() {
