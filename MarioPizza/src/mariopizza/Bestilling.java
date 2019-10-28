@@ -1,60 +1,62 @@
-
 package mariopizza;
 
 import java.util.ArrayList;
 
-
 public class Bestilling {
+
     private String tid;
-    private ArrayList <Pizza> pizza = new ArrayList();
+    private ArrayList<Pizza> pizza = new ArrayList();
+
     private Kunde kunde;
     private int id;
     private static int counter;
-    
+
     public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
         this.tid = tid;
-        this.id = ++counter; 
-        
-        if(Statistik.checkKunde(tlfnr) == null){
+        this.id = ++counter;
+
+        if (Statistik.checkKunde(tlfnr) == null) {
             kunde = new Kunde(tlfnr, navn);
-        }else{
+        } else {
             Statistik.checkKunde(tlfnr).setNavn(navn);
         }
-        
+
         String[] pizzaer = pizzaNummer.split(",");
-        int[] pizzaerNummer = new int [pizzaer.length];
-        
-        for(int i = 0; i < pizzaer.length; i++){
+        int[] pizzaerNummer = new int[pizzaer.length];
+
+        for (int i = 0; i < pizzaer.length; i++) {
             pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
-            
-            }
-        }
 
-  
+        }
+    }
+
     public Bestilling(String tid, String pizzaNummer, String navn) {
         this.tid = tid;
-        this.kunde = new Kunde( navn);
+        this.kunde = new Kunde(navn);
         this.id = ++counter;
-        
+
         String[] pizzaer = pizzaNummer.split(",");
-        int[] pizzaerNummer = new int [pizzaer.length];
-        
-        for(int i = 0; i < pizzaer.length; i++){
+        int[] pizzaerNummer = new int[pizzaer.length];
+
+        for (int i = 0; i < pizzaer.length; i++) {
             pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
-            }
         }
-    
-    public String printBes(){
+    }
+
+    public String printBes() {
         String retVal = "Pizzatype: ";
-        for(Pizza p: pizza){
+        for (Pizza p : pizza) {
             retVal += p.getNavn() + ",";
         }
         return retVal;
     }
 
-    
+    public ArrayList<Pizza> getPizza() {
+        return pizza;
+    }
+
     public int getId() {
         return id;
     }
@@ -62,7 +64,7 @@ public class Bestilling {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public String getTid() {
         return tid;
     }
@@ -78,9 +80,7 @@ public class Bestilling {
     public void setKunde(Kunde kunde) {
         this.kunde = kunde;
     }
-    
-    
-    
-    }
-    //Bestilling("18:30", "14,1,10,10");
+
+}
+//Bestilling("18:30", "14,1,10,10");
 

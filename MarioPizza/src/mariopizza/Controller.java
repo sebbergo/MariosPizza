@@ -48,9 +48,8 @@ public class Controller {
                     Menukort.sletLine(pizzaId);
                     break;
                 case 5:
-                    System.out.println("Friday");
-                    break;
-                //Valgmulighed 6 lukker programmet    
+                    Statistik.printAntalKøbtePizzaer();
+                    break;   
                 case 6:
                     Menukort.printMenukort();
                     break;
@@ -104,14 +103,14 @@ public class Controller {
         } else {
             bes = new Bestilling(tid, pizzaNummer, navn, tlfnr);
         }
-        BestillingsListe.addBestilling(bes);
         Statistik.addBestilling(bes);
+        Statistik.addBestillingStat(bes);
     }
 
     public static void fjernBestilling(int id) {
         Bestilling bes = Statistik.bestillingChecker(id);
         if (bes != null) {
-            BestillingsListe.removeBestilling(bes);
+            Statistik.removeBestilling(bes);
         }
     }
 }

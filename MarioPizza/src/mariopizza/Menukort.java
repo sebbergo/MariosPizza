@@ -112,6 +112,9 @@ public class Menukort {
         }
     }
 
+    public static ArrayList getAllePizzaer(){
+        return allePizzaer;
+    }
     
 
 }
