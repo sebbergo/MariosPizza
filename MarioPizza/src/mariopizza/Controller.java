@@ -30,12 +30,16 @@ public class Controller {
                     
                     break;
                 case 2:
-                    int bestillingId = getUserNumber("Skriv id på den bestilling du ønsker at fjerne");
+                    int bestillingId = getUserNumber("Skriv nummer på den bestilling du ønsker at fjerne");
                     fjernBestilling(bestillingId);
                     
                     break;
                 case 3:
-                    System.out.println("Wednesday");
+                    String pizzaNavn = getUserText("Skriv pizzaens navn");
+                    int pizzaPris = getUserNumber("Skriv pizzaens pris");
+                    String fyld = getPizzaer("skriv hvilket fyld eller exit for at stoppe");
+                    Menukort.addPizzaToCsv(pizzaNavn, pizzaPris, fyld);
+                    Menukort.gemCsv();
                     break;
                 case 4:
                     System.out.println("Thursday");
