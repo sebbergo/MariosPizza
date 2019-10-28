@@ -92,14 +92,14 @@ public class Controller {
         } else {
             bes = new Bestilling(tid, pizzaNummer, navn, tlfnr);
         }
-        Statistik.addBestillingStat(bes);
+        BestillingsListe.addBestilling(bes);
         Statistik.addBestilling(bes);
     }
 
     public static void fjernBestilling(int id) {
         Bestilling bes = Statistik.bestillingChecker(id);
         if (bes != null) {
-            Statistik.removeBestilling(bes);
+            BestillingsListe.removeBestilling(bes);
         }
     }
 }
