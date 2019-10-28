@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class BestillingsListe {
 
-    private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
 
@@ -35,17 +34,6 @@ public class BestillingsListe {
         }
     }
 
-    public static void addBestillingStat(Bestilling bestilling) {
-        bestillingerStat.add(bestilling);
-    }
-
-    public static void printBestillingStat() {
-        for (Bestilling bestillingStat : bestillingerStat) {
-            System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn() + "Telefon: " + bestillingStat.getKunde().getNummer());
-
-        }
-    }
-    
     public static Bestilling bestillingChecker(int id) {
         for (Bestilling bes : bestillinger) {
             if (bes.getId() == id) {

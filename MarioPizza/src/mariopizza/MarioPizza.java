@@ -12,16 +12,14 @@ public class MarioPizza {
         
         Controller.tilføjBestilling("10:30", "1,2,1,1,1", "Preben", 0);
         Controller.tilføjBestilling("10:30", "1,2,1,1,1", "Preben", 0);
-        
-        Statistik stat = new Statistik();
-        
-        stat.printBestillingStat();
+                
+        Statistik.printBestilling();
 
         System.out.println("");
         Controller.fjernBestilling(1);
-        stat.printBestilling();
+        Statistik.printBestilling();
         
-        stat.printBestillingStat();
+        BestillingsListe.printBestilling();
         
         Controller.run();
 

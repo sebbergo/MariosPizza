@@ -23,11 +23,10 @@ public class Controller {
                     String tid = getUserText("Skriv tidspunk til afhentning");
                     String pizzaNummere = getPizzaer("Skriv pizza nummer eller exit for at slutte");
                     String navn = getUserText("Skriv kundens navn");
-                    
                     int tlfnr = getUserNumber("Skriv telefonnummer hvis der ikke er et så skriv 0");
                     
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
-                    Statistik.printBestillingStat();
+                    Statistik.printBestilling();
                     
                     break;
                 case 2:
@@ -50,6 +49,7 @@ public class Controller {
             }
         }
     }
+    
     //Methode til at hente alle pizzaer
     public static String getPizzaer(String skriv){
         //retVal den værdig vi 'nsker at retuner
