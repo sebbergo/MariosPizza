@@ -7,24 +7,29 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Menukort {
 
     private static ArrayList<Pizza> allePizzaer = new ArrayList();
-    private String filename = "Data/Pizzaer.csv";
+    private static String filename = "Data/Pizzaer.csv";
+
     public Menukort() {
-              File file = new File(filename);
+        File file = new File(filename);
         try {
             Scanner myScanner = new Scanner(file);
             String line = "";
             while (myScanner.hasNextLine()) {
                 line = myScanner.nextLine();
-                String[] pizzaer = line.split(";");              
+                String[] pizzaer = line.split(";");
                 String navn = pizzaer[0];
                 int pris = Integer.parseInt(pizzaer[1]);
                 String[] fyld = new String[pizzaer.length - 2];
-                for(int i = 0; i < fyld.length; i++) fyld[i] = pizzaer[i+2];
-                
+                for (int i = 0; i < fyld.length; i++) {
+                    fyld[i] = pizzaer[i + 2];
+                }
+
                 makePizza(navn, pris, fyld);
             }
         } catch (Exception e) {
@@ -32,36 +37,41 @@ public class Menukort {
         }
     }
 
-    public void addPizzaToCsv(String navn, int pris, String fyld){
+    public static void addPizzaToCsv(String navn, int pris, String fyld) {
         Pizza pizza = new Pizza(navn, pris, fyld);
         allePizzaer.add(pizza);
-        
-    
-    }
-    
-    public void gemCsv() throws IOException{
-        File file = new File(filename);
-        FileWriter fw = new FileWriter(file);
-        for (Pizza pizza : allePizzaer) {
-        fw.write(pizza.getNavn()+";");
-        fw.write(pizza.getPris()+";");
-        String[] fyld = pizza.getFyld().split(",");
-        for(int i=0;i<fyld.length;i++){
-            fw.write(fyld[i]+";");
-        }
-        fw.write("\n");
-        }
-        fw.close();
 
     }
-    public void makePizza(String navn, int pris,String[] fyld){
-        
+
+    public static void gemCsv() {
+        File file = new File(filename);
+        FileWriter fw;
+        try {
+            fw = new FileWriter(file);
+            for (Pizza pizza : allePizzaer) {
+                fw.write(pizza.getNavn() + ";");
+                fw.write(pizza.getPris() + ";");
+                String[] fyld = pizza.getFyld().split(",");
+                for (int i = 0; i < fyld.length; i++) {
+                    fw.write(fyld[i] + ";");
+                }
+                fw.write("\n");
+            }
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Menukort.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void makePizza(String navn, int pris, String[] fyld) {
+
         String fyldString = "";
         for (int i = 0; i < fyld.length; i++) {
-        fyldString += fyld[i] + ",";
+            fyldString += fyld[i] + ",";
         }
         Pizza pep = new Pizza(navn, pris, fyldString);
-        addPizza(pep);        
+        addPizza(pep);
     }
 
     public void addPizza(Pizza pizza) {
@@ -84,7 +94,7 @@ public class Menukort {
     }
 
     public void readFile(String filename) {
-  
+
     }
 
 }
