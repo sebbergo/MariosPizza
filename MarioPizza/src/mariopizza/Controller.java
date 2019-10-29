@@ -5,12 +5,16 @@ import java.util.Scanner;
 public class Controller {
 
     public static void run() {
+        
         Scanner myScan = new Scanner(System.in);
         boolean exitValue = true;
+        String tempInput = "";
+        
         while (exitValue) {
             int cases = 1;
             //valg muligheder til brugeren
             cases = getUserNumber(
+                    "Hvis du ønsker at stoppe hvad du laver skriv stop\n" +
                     "Skriv 1 for at lave ny bestilling\n" + 
                     "Skriv 2 for at slette en bestilling\n" +
                     "Skriv 3 for at tilføje en ny pizza\n" +
@@ -21,30 +25,70 @@ public class Controller {
             switch (cases) {
                 //valg mulighed 1 til at lave en pizza
                 case 1:
-                    String tid = getUserText("Skriv tidspunk til afhentning");
-                    String pizzaNummere = getPizzaer("Skriv pizza nummer eller exit for at slutte");
-                    String navn = getUserText("Skriv kundens navn");
-                    int tlfnr = getUserNumber("Skriv telefonnummer hvis der ikke er et så skriv 0");
+                    String tid = "";
+                    String pizzaNummere = "";
+                    String navn = "";
+                    int tlfnr = 0;
+                    tempInput = getUserText("Skriv tidspunk til afhentning");
+                    if(!tempInput.contains("stop")){
+                        tid = tempInput;
+                        tempInput = getPizzaer("Skriv pizza nummer eller exit for at slutte");
+                        if(!tempInput.contains("stop")){
+                            pizzaNummere = tempInput;
+                            tempInput = getUserText("Skriv kundens navn");
+                            if(!tempInput.contains("stop")){
+                                navn = tempInput;
+                                tempInput = getUserText("Skriv telefonnummer hvis der ikke er et så skriv 0");
+                                if(!tempInput.contains("stop")){
+                                    tlfnr = Integer.parseInt(tempInput);
+                                }else break;
+                            }else break;
+                        }else break;
+                    }else break;
                     
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
                     Statistik.printBestilling();
                     
                     break;
                 case 2:
-                    int bestillingId = getUserNumber("Skriv nummer på den bestilling du ønsker at fjerne");
-                    fjernBestilling(bestillingId);
+                    int bestillingId = 0;
+                    tempInput = getUserText("Skriv nummer på den bestilling du ønsker at fjerne");
+                    if(!tempInput.contains("stop")){
+                        bestillingId = Integer.parseInt(tempInput);
+                    }else break;
                     
+                    // int bestillingId = getUserNumber("Skriv nummer på den bestilling du ønsker at fjerne");
+                    fjernBestilling(bestillingId);
                     break;
                 case 3:
-                    String pizzaNavn = getUserText("Skriv pizzaens navn");
-                    int pizzaPris = getUserNumber("Skriv pizzaens pris");
-                    String fyld = getPizzaer("skriv hvilket fyld eller exit for at stoppe");
+                    String pizzaNavn = "";
+                    int pizzaPris = 0;
+                    String fyld = "";
+                    
+                    tempInput = getUserText("Skriv pizzaens navn");
+                    if(!tempInput.contains("stop")){
+                        pizzaNavn = tempInput;
+                        tempInput = getUserText("Skriv pizzaens pris");
+                        if(!tempInput.contains("stop")){
+                            pizzaPris = Integer.parseInt(tempInput);
+                            tempInput = getPizzaer("skriv hvilket fyld eller exit for at stoppe");
+                            if(!tempInput.contains("stop")){
+                                fyld = tempInput;
+                            }else break;
+                        }else break;
+                    }else break;
+
                     Menukort.addPizzaToCsv(pizzaNavn, pizzaPris, fyld);
                     Menukort.gemCsv();
                     break;
                 case 4:
                     Menukort.printPizza();
-                    int pizzaId = getUserNumber("Skriv nummer på pizza du ønsker at slette");
+                    int pizzaId = 0;
+                    tempInput = getUserText("Skriv nummer på pizza du ønsker at slette");
+                    if(!tempInput.contains("stop")){
+                        pizzaId = Integer.parseInt(tempInput);
+                    }else break;
+                    
                     Menukort.sletLine(pizzaId);
                     break;
                 case 5:
@@ -71,13 +115,15 @@ public class Controller {
         
         //While loop der køre indtil brugeren skriver exit
         //hvergang det køre spøgere det om en pizza
-        while(!pizza.equals("exit")){
-            pizza = getUserText(skriv);
-                                              
+        while(!pizza.equals("exit") && !pizza.equals("stop")){
+            pizza = getUserText(skriv);                               
             pizzaNummere += pizza + ",";
         }
+        if(pizza.equals("stop")){
+           return pizzaNummere.substring(0, pizzaNummere.length() - 1); 
+        }
         //Fjerner ,exit, fra stringen før vi sender den retur 
-        retVal = pizzaNummere.substring(0, pizzaNummere.length() - 6);
+        retVal = pizzaNummere.substring(0, pizzaNummere.length() - 5);
         return retVal;
     }
     
