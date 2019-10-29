@@ -2,11 +2,11 @@ package mariopizza;
 
 public class Kunde {
 
-    int nummer;
+    int tlfNum;
     String navn;
 
     public Kunde(int nummer, String navn) {
-        this.nummer = nummer;
+        this.tlfNum = nummer;
         this.navn = navn;
     }
 
@@ -15,11 +15,11 @@ public class Kunde {
     }
 
     public int getNummer() {
-        return nummer;
+        return tlfNum;
     }
 
     public void setNummer(int nummer) {
-        this.nummer = nummer;
+        this.tlfNum = nummer;
     }
 
     public String getNavn() {

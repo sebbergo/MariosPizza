@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Controller {
 
     public static void run() {
+        Menukort.menukortLoad();
+        Statistik.StatLoad();
         
         Scanner myScan = new Scanner(System.in);
         boolean exitValue = true;
@@ -48,7 +50,7 @@ public class Controller {
                     
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
                     Statistik.printBestilling();
-                    
+                    Statistik.gemBestillingerCsv();
                     break;
                 case 2:
                     int bestillingId = 0;

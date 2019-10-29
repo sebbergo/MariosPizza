@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Bestilling {
 
     private String tid;
-    private ArrayList<Pizza> pizza = new ArrayList();
-
     private Kunde kunde;
+    private ArrayList<Pizza> pizza = new ArrayList();
+    
     private int id;
     private static int counter;
 
@@ -82,5 +82,5 @@ public class Bestilling {
     }
 
 }
-//Bestilling("18:30", "14,1,10,10");
+
 

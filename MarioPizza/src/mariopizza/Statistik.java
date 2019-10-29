@@ -1,10 +1,18 @@
 package mariopizza;
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static mariopizza.Menukort.makePizza;
 
 public class Statistik {
-
+    private static String filename = "Data/Bestillinger.csv";
+    
     private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
@@ -65,6 +73,50 @@ public class Statistik {
         }
         for (int i = 0; i < antalPizzaer.length; i++) {
             System.out.println(antalPizzaer[i]);
+        }
+    }
+    
+    public static void gemBestillingerCsv(){
+        File file = new File(filename);
+        FileWriter fw;
+        try {
+            fw = new FileWriter(file);
+            for (Bestilling bes : bestillinger) {
+                fw.write(bes.getTid() + ";");
+                fw.write(bes.getKunde().getNavn() + ";");
+                fw.write(bes.getKunde().getNummer() + ";");
+                
+                for (Pizza piz : bes.getPizza()) {
+                    fw.write(piz.getNummer() + ";");
+                }
+                fw.write("\n");
+            }
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Menukort.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public static void StatLoad() {
+        File file = new File(filename);
+        try {
+            Scanner myScanner = new Scanner(file);
+            String line = "";
+            while (myScanner.hasNextLine()) {
+                line = myScanner.nextLine();
+                String[] bes = line.split(";");
+                String tid = bes[0];
+                int nummer = Integer.parseInt(bes[2]);
+                
+                String pizzaer = "";
+                for (int i = 3; i < bes.length; i++) {
+                    pizzaer += bes[3] + ",";
+                }
+                Controller.tilføjBestilling(tid, pizzaer, bes[1] ,nummer);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.toString());
         }
     }
 }

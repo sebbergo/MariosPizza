@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class Pizza {
-    private int nummer;
+    private int id;
     private String navn;
     private int pris;
     private String fyld;
@@ -15,8 +15,7 @@ public class Pizza {
         this.navn = navn;
         this.fyld = fyld;
         this.pris = pris;
-        nummer = Counter;
-        Counter++;
+        id = Counter++;
     }
 
     public int getPris() {
@@ -46,11 +45,11 @@ public class Pizza {
     //Pizza pep = new pizza(14, asdasda);
 
     public int getNummer() {
-        return nummer;
+        return id;
     }
 
     public void setNummer(int nummer) {
-        this.nummer = nummer;
+        this.id = nummer;
     }
 
     @Override

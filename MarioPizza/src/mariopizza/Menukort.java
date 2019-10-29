@@ -15,7 +15,7 @@ public class Menukort {
     private static ArrayList<Pizza> allePizzaer = new ArrayList();
     private static String filename = "Data/Pizzaer.csv";
 
-    public Menukort() {
+    public static void menukortLoad() {
         File file = new File(filename);
         try {
             Scanner myScanner = new Scanner(file);
@@ -69,7 +69,7 @@ public class Menukort {
 
     }
 
-    public void makePizza(String navn, int pris, String[] fyld) {
+    public static void makePizza(String navn, int pris, String[] fyld) {
 
         String fyldString = "";
         for (int i = 0; i < fyld.length; i++) {
@@ -107,7 +107,7 @@ public class Menukort {
     public static void printMenukort() {
         String pizzaPrint = "";
         for (Pizza pizza : allePizzaer) {
-            pizzaPrint = pizza.getNummer() + ": " + pizza.getNavn() + ", " + pizza.getFyld();
+            pizzaPrint = pizza.getNummer() + ": " + pizza.getNavn() + ", " + pizza.getFyld() + " Pris: " + pizza.getPris();
             System.out.println(pizzaPrint);
         }
     }
