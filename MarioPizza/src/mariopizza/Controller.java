@@ -94,7 +94,19 @@ public class Controller {
                     Menukort.sletLine(pizzaId);
                     break;
                 case 5:
-                    Statistik.printAntalKøbtePizzaer();
+                    cases = getUserNumber(
+                            "Skriv 1 for at se antal køb af hver pizza\n" + 
+                            "Skriv 2 for at se bestillinger");
+                    switch (cases) {
+                        case 1:
+                            Statistik.printAntalKøbtePizzaer();
+                            
+                        break;
+                        case 2:
+                            Statistik.printBestilling();
+                        break;
+                            
+                    }
                     break;   
                 case 6:
                     Menukort.printMenukort();

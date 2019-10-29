@@ -68,7 +68,7 @@ public class Statistik {
         int[] antalPizzaer = new int [Menukort.getAllePizzaer().size()];
         for (Bestilling bestilling : bestillingerStat) {
             for (Pizza piz : bestilling.getPizza()) {
-                antalPizzaer[piz.getNummer()]++;
+                antalPizzaer[piz.getNummer() - 1]++;
             }
         }
         for (int i = 0; i < antalPizzaer.length; i++) {
@@ -111,7 +111,7 @@ public class Statistik {
                 
                 String pizzaer = "";
                 for (int i = 3; i < bes.length; i++) {
-                    pizzaer += bes[3] + ",";
+                    pizzaer += bes[i] + ",";
                 }
                 Controller.tilføjBestilling(tid, pizzaer, bes[1] ,nummer);
             }
