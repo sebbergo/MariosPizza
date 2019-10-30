@@ -59,7 +59,27 @@ public class Statistik {
     }
 
     public static void bestillingerEfterTid() {
-
+     
+        
+        Collections.sort(bestillinger);
+//        for (int j = bestillinger.size(); j > 1 ; j--) {
+//            
+//        
+//        for(int i = 2; i < j;i++){
+//            System.out.println(j-i);
+//            String[] tid = bestillinger.get(j-i).getTid().split(":");
+//            int min1 = Integer.parseInt(tid[1]);
+//            int time1 = Integer.parseInt(tid[0]);
+//            String[] tid2 = bestillinger.get(j - i - 1).getTid().split(":");
+//            int min2 = Integer.parseInt(tid2[1]);
+//            int time2 = Integer.parseInt(tid2[0]);
+//            if(time1 < time2 && min1 < min2){
+//               Collections.swap(bestillinger, i ,i-1); 
+//            
+//        }
+            
+//        }
+//        }
 
     }
 

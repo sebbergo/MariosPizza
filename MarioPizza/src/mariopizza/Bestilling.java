@@ -2,7 +2,7 @@ package mariopizza;
 
 import java.util.ArrayList;
 
-public class Bestilling{
+public class Bestilling implements Comparable<Object>{
 
     private String tid;
     private Kunde kunde;
@@ -79,6 +79,29 @@ public class Bestilling{
 
     public void setKunde(Kunde kunde) {
         this.kunde = kunde;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Bestilling other = (Bestilling) o;
+        int thisHour = Integer.parseInt(this.tid.split(":")[0]);
+        int thisMin = Integer.parseInt(this.tid.split(":")[1]);
+        int otherHour = Integer.parseInt(other.getTid().split(":")[0]);
+        int otherMin = Integer.parseInt(other.getTid().split(":")[1]);
+        
+        if(thisHour > otherHour){
+            return 1;
+        } else if (thisHour < otherHour){
+            return -1;
+        } else {
+            if(thisMin > otherMin){
+                return 1;
+            } else if (thisMin < otherMin){
+                return -1;
+            } else {
+                return 0;
+            }
+        }
     }
 
 }
