@@ -2,7 +2,7 @@ package mariopizza;
 
 import java.util.ArrayList;
 
-public class Bestilling {
+public class Bestilling{
 
     private String tid;
     private Kunde kunde;

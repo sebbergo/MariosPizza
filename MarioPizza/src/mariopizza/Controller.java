@@ -12,6 +12,10 @@ public class Controller {
         boolean exitValue = true;
         String tempInput = "";
 
+        Statistik.bestillingerEfterTid();
+        Statistik.gemBestillingerCsv();
+        
+        
         while (exitValue) {
             int cases = 1;
             //valg muligheder til brugeren
@@ -205,7 +209,7 @@ public class Controller {
             satTidTimeInt = Integer.parseInt(satTidTime);
 
         }
-        while(!satTidMin.contains("stop") && satTidMinInt < 0 || !satTidMin.contains("stop") && satTidMinInt > 24){
+        while(!satTidMin.contains("stop") && satTidMinInt < 0 || !satTidMin.contains("stop") && satTidMinInt > 60){
             satTidMin = getUserText(min);
             satTidMinInt = Integer.parseInt(satTidMin);
         }
