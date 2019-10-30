@@ -55,6 +55,12 @@ public class Statistik {
         }
     }
     
+    public static void bestillingerEfterTid(){
+        for (Bestilling bestilling : bestillinger) {
+            
+        }
+    }
+    
     public static Bestilling bestillingChecker(int id) {
         for (Bestilling bes : bestillinger) {
             if (bes.getId() == id) {
