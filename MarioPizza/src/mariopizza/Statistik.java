@@ -15,15 +15,16 @@ import static mariopizza.Menukort.makePizza;
 public class Statistik {
     //path til vores csv-fil der holder på bestillinger
     private static String filename = "Data/Bestillinger.csv";
-//oprettelse af arraylists, til statistik, bestillinger og kunder
+    //oprettelse af arraylists, til statistik, bestillinger og kunder
     private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
-// metode der tilføjer kunde til vores kunder-arraylist
+    // metode der tilføjer kunde til vores kunder-arraylist
     public void addKunde(Kunde kunde) {
         kunder.add(kunde);
     }
-//metode der checker om en given kundes telefonnummer allerede eksistere under andet navn, og retunere nyt navn til samme nummer
+    //metode der checker om en given kundes telefonnummer allerede eksistere under 
+    //andet navn, og retunere nyt navn til samme nummer
     public static Kunde checkKunde(int tlfnr) {
         for (Kunde kunde : kunder) {
             if (kunde.getNummer() == tlfnr) {
@@ -32,7 +33,7 @@ public class Statistik {
         }
         return null;
     }
-//Fjerner og tilføjer bestillinger
+    //Fjerner og tilføjer bestillinger
     public static void addBestilling(Bestilling bestilling) {
         bestillinger.add(bestilling);
     }
@@ -40,13 +41,13 @@ public class Statistik {
     public static void removeBestilling(Bestilling bestilling) {
         bestillinger.remove(bestilling);
     }
-//printer bestillinger
+    //printer bestillinger
     public static void printBestilling() {
         for (Bestilling bestilling : bestillinger) {
             System.out.println(bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
         }
     }
-//fjerner/tilføjer bestillinger til statistik
+    //fjerner/tilføjer bestillinger til statistik
     public static void addBestillingStat(Bestilling bestilling) {
         bestillingerStat.add(bestilling);
     }
@@ -57,32 +58,13 @@ public class Statistik {
 
         }
     }
-//sortere vores bestillinger efter tid vha. vores compareTo metode i Bestilling.java
+    //sortere vores bestillinger efter tid vha. vores compareTo metode i Bestilling.java
     public static void bestillingerEfterTid() {
-     
-        
         Collections.sort(bestillinger);
-//        for (int j = bestillinger.size(); j > 1 ; j--) {
-//            
-//        
-//        for(int i = 2; i < j;i++){
-//            System.out.println(j-i);
-//            String[] tid = bestillinger.get(j-i).getTid().split(":");
-//            int min1 = Integer.parseInt(tid[1]);
-//            int time1 = Integer.parseInt(tid[0]);
-//            String[] tid2 = bestillinger.get(j - i - 1).getTid().split(":");
-//            int min2 = Integer.parseInt(tid2[1]);
-//            int time2 = Integer.parseInt(tid2[0]);
-//            if(time1 < time2 && min1 < min2){
-//               Collections.swap(bestillinger, i ,i-1); 
-//            
-//        }
-            
-//        }
-//        }
-
     }
 
+    //Vi checker at det er den rigtige pizza vha. dens id, fordi vi ikke
+    //kan oprette objekter at referere til
     public static Bestilling bestillingChecker(int id) {
         for (Bestilling bes : bestillinger) {
             if (bes.getId() == id) {
@@ -92,6 +74,8 @@ public class Statistik {
         return null;
     }
 
+    //Metoden går ind og printer alle de pizzaer der er tilføjet til
+    //bestillinger i statistikken
     public static void printAntalKøbtePizzaer() {
         int[] antalPizzaer = new int[Menukort.getAllePizzaer().size()];
         for (Bestilling bestilling : bestillingerStat) {
@@ -104,6 +88,8 @@ public class Statistik {
         }
     }
 
+    //Metode der hjælper med at gemme pizzaer i vores csv fil efter der bliver
+    //ændret i den
     public static void gemBestillingerCsv() {
         File file = new File(filename);
         FileWriter fw;
@@ -128,6 +114,7 @@ public class Statistik {
 
     }
 
+    //Metode der loader statistikken
     public static void StatLoad() {
         File file = new File(filename);
         try {
