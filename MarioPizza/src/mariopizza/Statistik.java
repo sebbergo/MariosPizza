@@ -84,7 +84,7 @@ public class Statistik {
             }
         }
         for (int i = 0; i < antalPizzaer.length; i++) {
-            System.out.println(antalPizzaer[i]);
+            System.out.println("Pizza nummer: " + i + ": "+antalPizzaer[i]);
         }
     }
 
