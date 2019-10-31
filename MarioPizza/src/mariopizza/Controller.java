@@ -14,8 +14,7 @@ public class Controller {
 
         Statistik.bestillingerEfterTid();
         Statistik.gemBestillingerCsv();
-        
-        
+
         while (exitValue) {
             int cases = 1;
             //valg muligheder til brugeren
@@ -64,9 +63,12 @@ public class Controller {
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
                     Statistik.printBestilling();
                     Statistik.gemBestillingerCsv();
+                    Statistik.bestillingerEfterTid();
+                    Statistik.gemBestillingerCsv();
                     break;
 
                 case 2:
+                    Statistik.printBestilling();
                     int bestillingId = 0;
                     tempInput = getUserText("Skriv nummer på den bestilling du ønsker at fjerne");
                     if (!tempInput.contains("stop")) {
@@ -77,6 +79,8 @@ public class Controller {
 
                     // int bestillingId = getUserNumber("Skriv nummer på den bestilling du ønsker at fjerne");
                     fjernBestilling(bestillingId);
+                    Statistik.bestillingerEfterTid();
+                    Statistik.gemBestillingerCsv();
                     break;
                 case 3:
                     String pizzaNavn = "";
@@ -204,12 +208,12 @@ public class Controller {
         int satTidTimeInt = -1;
         int satTidMinInt = -1;
 
-        while(!satTidTime.contains("stop") && satTidTimeInt < 0 || !satTidTime.contains("stop") && satTidTimeInt > 24){
+        while (!satTidTime.contains("stop") && satTidTimeInt < 0 || !satTidTime.contains("stop") && satTidTimeInt > 24) {
             satTidTime = getUserText(time);
             satTidTimeInt = Integer.parseInt(satTidTime);
 
         }
-        while(!satTidMin.contains("stop") && satTidMinInt < 0 || !satTidMin.contains("stop") && satTidMinInt > 60){
+        while (!satTidMin.contains("stop") && satTidMinInt < 0 || !satTidMin.contains("stop") && satTidMinInt > 60) {
             satTidMin = getUserText(min);
             satTidMinInt = Integer.parseInt(satTidMin);
         }
@@ -217,6 +221,5 @@ public class Controller {
         System.out.println(satTidTimeInt);
         return satTidTime + ":" + satTidMin;
     }
-    
-    
+
 }
