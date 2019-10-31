@@ -66,16 +66,10 @@ public class Controller {
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
                     Statistik.printBestilling();
                     Statistik.gemBestillingerCsv();
-                    Statistik.bestillingerEfterTid();
-                    Statistik.gemBestillingerCsv();
                     break;
 
                 case 2:
-<<<<<<< HEAD
-                    Statistik.printBestilling();
-=======
                     //fjern eksisterende bestilling
->>>>>>> master
                     int bestillingId = 0;
                     tempInput = getUserText("Skriv nummer på den bestilling du ønsker at fjerne");
                     if (!tempInput.contains("stop")) {
@@ -85,8 +79,6 @@ public class Controller {
                     }
 
                     fjernBestilling(bestillingId);
-                    Statistik.bestillingerEfterTid();
-                    Statistik.gemBestillingerCsv();
                     break;
                 case 3:
                     //Lav en ny pizza der bliver tilføjet til csv fil

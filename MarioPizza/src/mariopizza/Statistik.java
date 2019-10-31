@@ -44,7 +44,7 @@ public class Statistik {
     //printer bestillinger
     public static void printBestilling() {
         for (Bestilling bestilling : bestillinger) {
-            System.out.println("ID: " + bestilling.getId() + " | " + bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
+            System.out.println(bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
         }
     }
     //fjerner/tilføjer bestillinger til statistik
