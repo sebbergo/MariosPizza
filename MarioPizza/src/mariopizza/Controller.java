@@ -1,5 +1,6 @@
 package mariopizza;
 //@author Marc
+
 import java.util.Scanner;
 
 public class Controller {
@@ -66,10 +67,13 @@ public class Controller {
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
                     Statistik.printBestilling();
                     Statistik.gemBestillingerCsv();
+                    Statistik.bestillingerEfterTid();
+                    Statistik.gemBestillingerCsv();
                     break;
 
                 case 2:
                     //fjern eksisterende bestilling
+                    Statistik.printBestilling();
                     int bestillingId = 0;
                     tempInput = getUserText("Skriv nummer på den bestilling du ønsker at fjerne");
                     if (!tempInput.contains("stop")) {
@@ -79,6 +83,8 @@ public class Controller {
                     }
 
                     fjernBestilling(bestillingId);
+                    Statistik.bestillingerEfterTid();
+                    Statistik.gemBestillingerCsv();
                     break;
                 case 3:
                     //Lav en ny pizza der bliver tilføjet til csv fil
@@ -108,7 +114,7 @@ public class Controller {
                     Menukort.addPizzaToCsv(pizzaNavn, pizzaPris, fyld);
                     Menukort.gemCsv();
                     break;
-                    
+
                 case 4:
                     //Fjern eksisterende pizza fra csv fil
                     Menukort.printPizza();
@@ -122,7 +128,7 @@ public class Controller {
 
                     Menukort.sletLine(pizzaId);
                     break;
-                    
+
                 case 5:
                     //Antal køb af hver pizza eller alle bestillinger
                     cases = getUserNumber(
@@ -139,12 +145,12 @@ public class Controller {
 
                     }
                     break;
-                
+
                 //Se menukort
                 case 6:
                     Menukort.printMenukort();
                     break;
-                
+
                 //Luk program
                 case 7:
                     exitValue = false;
@@ -215,7 +221,7 @@ public class Controller {
             Statistik.removeBestilling(bes);
         }
     }
-    
+
     //metode til at sætte tidspunkt bestillingen skal hentes på
     public static String getTid(String time, String min) {
         String satTidTime = "";
