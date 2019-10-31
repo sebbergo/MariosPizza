@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package mariopizza;
-
+//@author Sebastian
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Sebastian
- */
+
 public class PizzaTest {
     
     public PizzaTest() {

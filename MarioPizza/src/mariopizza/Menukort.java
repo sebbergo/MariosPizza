@@ -1,5 +1,5 @@
 package mariopizza;
-
+//@author Marcus
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ public class Menukort {
 
     private static ArrayList<Pizza> allePizzaer = new ArrayList();
     private static String filename = "Data/Pizzaer.csv";
-
+        //Loader menukort fra csv filen Pizzaer.csv og splitter linjerne ved hvert ;
     public static void menukortLoad() {
         File file = new File(filename);
         try {
@@ -31,12 +31,12 @@ public class Menukort {
                 }
 
                 makePizza(navn, pris, fyld);
-            }
+            } //laver en try catch, for at finde csv filen.
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());
         }
     }
-
+        //sletter en linje, ved at fjerne en linej og printe csv igen uden slettede linje
     public static void sletLine(int line) {
         removePizza(line);
         gemCsv();

@@ -1,5 +1,5 @@
 package mariopizza;
-
+//@author Marcus
 public class Kunde {
 
     int tlfNum;
