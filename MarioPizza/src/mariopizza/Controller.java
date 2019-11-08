@@ -47,7 +47,7 @@ public class Controller {
                             pizzaNummere = tempInput;
                             tempInput = getUserText("Skriv kundens navn");
                             if (!tempInput.contains("stop")) {
-                                navn = tempInput;
+                                navn     = tempInput;
                                 tempInput = getUserText("Skriv telefonnummer hvis der ikke er et så skriv 0");
                                 if (!tempInput.contains("stop")) {
                                     tlfnr = Integer.parseInt(tempInput);
