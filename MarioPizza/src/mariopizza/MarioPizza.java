@@ -1,5 +1,6 @@
 package mariopizza;
 //@author Lukas
+import mariopizza.Controller.Controller;
 import java.util.ArrayList;
 
 public class MarioPizza {

@@ -1,5 +1,6 @@
-package mariopizza;
+package mariopizza.View;
 //@author Marcus
+import mariopizza.Model.Pizza;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

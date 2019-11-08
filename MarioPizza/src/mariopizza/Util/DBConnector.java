@@ -7,7 +7,7 @@ public class DBConnector {
     
     public static Connection getConnector() throws SQLException, ClassNotFoundException {
         Connection connector = null;
-        String url = "jdbc:mysql://localhost:3306/movies?" + 
+        String url = "jdbc:mysql://localhost:3306/mario?" + 
                      "serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false";
         String user = "root";
         String password = "Dug83cmn";

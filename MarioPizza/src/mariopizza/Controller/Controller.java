@@ -1,7 +1,10 @@
-package mariopizza;
+package mariopizza.Controller;
 //@author Marc
 
+import mariopizza.Model.Bestilling;
 import java.util.Scanner;
+import mariopizza.View.Menukort;
+import mariopizza.View.Statistik;
 
 public class Controller {
 

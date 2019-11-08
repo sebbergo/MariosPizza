@@ -1,5 +1,5 @@
 
-package mariopizza;
+package mariopizza.Model;
 //@author Sebastian
 import java.util.ArrayList;
 

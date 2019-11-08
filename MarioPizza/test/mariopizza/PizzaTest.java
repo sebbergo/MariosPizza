@@ -5,6 +5,7 @@
  */
 package mariopizza;
 //@author Sebastian
+import mariopizza.Model.Pizza;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

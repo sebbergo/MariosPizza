@@ -1,4 +1,4 @@
-package mariopizza;
+package mariopizza.Model;
 //@author Marcus
 public class Kunde {
 

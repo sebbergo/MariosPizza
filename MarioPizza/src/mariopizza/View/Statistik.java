@@ -1,5 +1,9 @@
-package mariopizza;
+package mariopizza.View;
 //@author Lukas
+import mariopizza.Controller.Controller;
+import mariopizza.Model.Bestilling;
+import mariopizza.Model.Kunde;
+import mariopizza.Model.Pizza;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +14,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static mariopizza.Menukort.makePizza;
+import static mariopizza.View.Menukort.makePizza;
 
 public class Statistik {
     //path til vores csv-fil der holder på bestillinger
