@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package GUI;
-import static mariopizza.Controller.tilføjBestilling;
-import mariopizza.Menukort;
-import mariopizza.Statistik;
+
+import static mariopizza.Controllers.Controller.tilføjBestilling;
+import mariopizza.View.Menukort;
+import mariopizza.View.Statistik;
+
 /**
  *
  * @author marcg
@@ -243,7 +245,7 @@ public class NyBestilling extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                        Menukort.menukortLoad();
+                Menukort.menukortLoad();
                 Statistik.StatLoad();
                 new NyBestilling().setVisible(true);
             }

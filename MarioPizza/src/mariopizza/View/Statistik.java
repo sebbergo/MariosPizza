@@ -1,6 +1,6 @@
 package mariopizza.View;
 //@author Lukas
-import mariopizza.Controller.Controller;
+import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Kunde;
 import mariopizza.Model.Pizza;
@@ -27,7 +27,14 @@ public class Statistik {
     public void addKunde(Kunde kunde) {
         kunder.add(kunde);
     }
-    //metode der checker om en given kundes telefonnummer allerede eksistere under 
+    public static ArrayList<Bestilling> getBestillingerStat() {
+        return bestillingerStat;
+    }
+
+    public static ArrayList<Bestilling> getBestillinger() {
+        return bestillinger;
+    }
+    //metode der checker om en given kundes telefonnummer allerede eksistere under
     //andet navn, og retunere nyt navn til samme nummer
     public static Kunde checkKunde(int tlfnr) {
         for (Kunde kunde : kunder) {

@@ -5,6 +5,8 @@
  */
 package GUI;
 import mariopizza.*;
+import mariopizza.View.Menukort;
+import mariopizza.View.Statistik;
 /**
  *
  * @author marcg
@@ -51,8 +53,18 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("slette en bestilling");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("tilføje en ny pizza");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("slette en pizza");
 
@@ -119,6 +131,20 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        SletBes sletBes = new SletBes();
+        sletBes.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        LavNyPizza nyPiz = new LavNyPizza();
+        nyPiz.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -149,6 +175,8 @@ public class NewJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Menukort.menukortLoad();
+                Statistik.StatLoad();
                 new NewJFrame().setVisible(true);
             }
         });

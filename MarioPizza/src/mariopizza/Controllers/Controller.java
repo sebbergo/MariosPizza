@@ -1,4 +1,4 @@
-package mariopizza.Controller;
+package mariopizza.Controllers;
 //@author Marc
 
 import mariopizza.Model.Bestilling;
@@ -10,8 +10,6 @@ public class Controller {
 
     //Programmet starter og mulighederne vises på skærmen
     public static void run() {
-        Menukort.menukortLoad();
-        Statistik.StatLoad();
 
         Scanner myScan = new Scanner(System.in);
         boolean exitValue = true;

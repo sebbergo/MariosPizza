@@ -20,12 +20,16 @@ public class SqlWriter {
                 String navn = pizzaer[0];
                 int pris = Integer.parseInt(pizzaer[1]);
                 String[] fyld = new String[pizzaer.length - 2];
+                String res = "";
+                res += "insert into pizza values (" + "null,'" + navn + "'," + pris + ",'";
                 for (int i = 0; i < fyld.length; i++) {
-                    fyld[i] = pizzaer[i + 2];
+                    res += pizzaer[i + 2] + ",";
                 }
-
+                res = res.substring(0, res.length() - 1);
+                res += "');\n";
+                fw.write(res);
                 //skriv SQL HER!
-                fw.write("insert into pizza values (" + "null," + navn + "," + pris + "," + fyld + ");");
+                
             } //laver en try catch, for at finde csv filen.
             fw.close();
         } catch (Exception e) {
