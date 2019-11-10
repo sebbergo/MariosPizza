@@ -7,18 +7,18 @@ import java.util.ArrayList;
 public class Pizza {
     private int id;
     private String navn;
-    private int pris;
+    private double pris;
     private String fyld;
     private static int Counter = 1;
 
-    public Pizza(String navn, int pris, String fyld) {
+    public Pizza(String navn, double pris, String fyld) {
         this.navn = navn;
         this.fyld = fyld;
         this.pris = pris;
         id = Counter++;
     }
 
-    public int getPris() {
+    public double getPris() {
         return pris;
     }
 

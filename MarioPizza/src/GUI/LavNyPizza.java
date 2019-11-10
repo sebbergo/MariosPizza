@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import mariopizza.Model.Pizza;
+import mariopizza.Util.DBCalls;
 import mariopizza.View.Menukort;
 
 /**
@@ -145,13 +147,14 @@ public class LavNyPizza extends javax.swing.JFrame {
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
         String pizzaNavn = jTextField2.getText();
-        int pizzaPris = Integer.parseInt(jTextField3.getText());
+        double pizzaPris = Double.parseDouble(jTextField3.getText());
         String fyld = jTextField1.getText();
-
-        Menukort.addPizzaToCsv(pizzaNavn, pizzaPris, fyld);
-        Menukort.gemCsv();
+        
+        Pizza tempPizza = new Pizza(pizzaNavn, pizzaPris, fyld);
+        
+        Menukort.addPizza(tempPizza);
+        DBCalls.insertToPizza(pizzaNavn, pizzaPris, fyld);
         goBack();
-
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

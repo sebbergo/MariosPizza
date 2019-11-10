@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import static mariopizza.Controllers.Controller.fjernBestilling;
+import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
@@ -137,7 +137,7 @@ public class SletBes extends javax.swing.JFrame {
             String tal = selected.get(i).replaceAll("[^0-9]+", "");
             int id = Integer.parseInt(tal);
             System.out.println(id);
-            fjernBestilling(id);
+            Controller.fjernBestilling(id);
         }
         loadList();
         Statistik.bestillingerEfterTid();
@@ -182,11 +182,7 @@ public class SletBes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Menukort.menukortLoad();
-                Statistik.StatLoad();
-
                 new SletBes().setVisible(true);
-
             }
         });
     }

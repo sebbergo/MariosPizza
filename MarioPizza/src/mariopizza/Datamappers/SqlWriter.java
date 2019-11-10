@@ -7,7 +7,7 @@ import mariopizza.Util.DBCalls;
 
 public class SqlWriter {
 
-    public static void writeSqlFromPizzaCsv() {
+    public static void insretPizzaFromCsv() {
         File file = new File("Data/Pizzaer.csv");
         try {
             Scanner myScanner = new Scanner(file);
@@ -24,7 +24,7 @@ public class SqlWriter {
                     retFyld += pizzaer[i + 2] + ",";
                 }
                 retFyld = retFyld.substring(0, retFyld.length() - 1);
-                DBCalls.insert("pizza", navn, pris, retFyld);
+                DBCalls.insertToPizza(navn, pris, retFyld);
                 
             } //laver en try catch, for at finde csv filen.
         } catch (Exception e) {

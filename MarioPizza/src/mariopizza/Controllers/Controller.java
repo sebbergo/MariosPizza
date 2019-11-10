@@ -3,6 +3,8 @@ package mariopizza.Controllers;
 
 import mariopizza.Model.Bestilling;
 import java.util.Scanner;
+import mariopizza.Model.Pizza;
+import mariopizza.Util.DBCalls;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
 
@@ -243,5 +245,9 @@ public class Controller {
         System.out.println(satTidTimeInt);
         return satTidTime + ":" + satTidMin;
     }
-
+    
+    public static void fjernPizza(int id){
+        Menukort.getAllePizzaer().remove(Menukort.pizzaChecker(id));
+        DBCalls.deleteFromPizza(id);
+    }
 }

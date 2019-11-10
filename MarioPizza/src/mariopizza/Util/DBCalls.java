@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Model.Pizza;
+import mariopizza.View.Menukort;
 
 public class DBCalls {
 
-    public static void insert(String table, String navn, int pris, String fyld) {
+    public static void insertToPizza(String navn, double pris, String fyld) {
 
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "insert into " + table + " values (null,'" + navn + "'," + pris + ",'" + fyld + "');";
+            String query = "insert into pizza values (null,'" + navn + "'," + pris + ",'" + fyld + "');";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 
@@ -29,40 +30,58 @@ public class DBCalls {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //lukker
     }
-    
-        public static ArrayList <Pizza> selectAllPizza(String table) throws SQLException, SQLException, ClassNotFoundException{
-        ArrayList returnList = new ArrayList();
-        
+
+    public static void deleteFromPizza(int id) {
+
+        Connection MyConnector = null;
+        Statement statement = null;
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "delete from pizza where pizza_id=" + id + ";";
+            statement = MyConnector.createStatement();
+            statement.executeUpdate(query);
+
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void selectAllPizza() {
+
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        MyConnector = DBConnector.getConnector();
-        String query = "SELECT * FROM " + table;
-        statement = MyConnector.createStatement();
-        resultSet = statement.executeQuery(query);
-        
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (resultSet.next()) {
-            int movieId = resultSet.getInt("movie_id");
-            String movieTitle = resultSet.getString("movie_title");
-            String director = resultSet.getString("director");
-            String year = resultSet.getString("year");
-            String genreId = resultSet.getString("genre_id");
-            
-            Pizza tempMovie = new Pizza(movieId, movieTitle, director, year);
-            returnList.add(tempMovie);
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "SELECT * FROM pizza";
+            statement = MyConnector.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (resultSet.next()) {
+//            int id = resultSet.getInt("pizza_id");
+                String navn = resultSet.getString("pizza_navn");
+                double pris = resultSet.getDouble("pizza_pris");
+                String fyld = resultSet.getString("pizza_fyld");
+
+                Pizza tempPizza = new Pizza(navn, pris, fyld);
+                Menukort.addPizza(tempPizza);
+            }
+
+            //lukker
+            resultSet.close();;
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //lukker
-        resultSet.close();;
-        statement.close();
-        MyConnector.close();
-
-        
-        return returnList;
     }
 }

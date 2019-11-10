@@ -25,7 +25,7 @@ public class Menukort {
                 line = myScanner.nextLine();
                 String[] pizzaer = line.split(";");
                 String navn = pizzaer[0];
-                int pris = Integer.parseInt(pizzaer[1]);
+                double pris = Double.parseDouble(pizzaer[1]);
                 String[] fyld = new String[pizzaer.length - 2];
                 for (int i = 0; i < fyld.length; i++) {
                     fyld[i] = pizzaer[i + 2];
@@ -70,7 +70,7 @@ public class Menukort {
 
     }
 
-    public static void makePizza(String navn, int pris, String[] fyld) {
+    public static void makePizza(String navn, double pris, String[] fyld) {
 
         String fyldString = "";
         for (int i = 0; i < fyld.length; i++) {
@@ -113,7 +113,7 @@ public class Menukort {
         }
     }
 
-    public static ArrayList getAllePizzaer(){
+    public static ArrayList<Pizza> getAllePizzaer(){
         return allePizzaer;
     }
     

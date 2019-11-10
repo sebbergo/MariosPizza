@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package GUI;
+
 import mariopizza.*;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
+
 /**
  *
  * @author marcg
@@ -67,6 +69,11 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton9.setText("slette en pizza");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("se statistik");
 
@@ -144,6 +151,13 @@ public class NewJFrame extends javax.swing.JFrame {
         nyPiz.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        SletPizza slet = new SletPizza();
+        slet.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -23,8 +23,8 @@ public class PizzaTest {
         System.out.println("getPris");
         Pizza pizTest = new Pizza("Vesuvio", 54, "ost, tomat, pepperoni, gorgonzola");        
         int expResult = 54;
-        int result = pizTest.getPris();
-        assertEquals(expResult, result);
+        double result = pizTest.getPris();
+        assertEquals(expResult, result, 0.001);
     }
 
     /**
