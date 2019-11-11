@@ -1,13 +1,20 @@
 package mariopizza.Model;
 //@author Marcus
 public class Kunde {
-
-    int tlfNum;
-    String navn;
+    private int id;
+    private int tlfNum;
+    private String navn;
+    private static int counter = 0;
+    
 
     public Kunde(int nummer, String navn) {
         this.tlfNum = nummer;
         this.navn = navn;
+        this.id = counter++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Kunde(String navn) {

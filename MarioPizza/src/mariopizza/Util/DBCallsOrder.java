@@ -14,20 +14,24 @@ import mariopizza.View.Statistik;
 
 public class DBCallsOrder {
 
-    public static void insertToOrder(Bestilling bes) {
+    public static void insertToOrder(String tid, int kundeId, String pizzaer) {
 
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
-            int kundeId = DBCallsKunde.selectKundeId(bes.getKunde().getNummer());
-            String pizzaer = "";
-            for (Pizza pizza : bes.getPizza()) {
-                pizzaer += pizza.getNummer() + ",";
-            }
+            
+            double pris = 12;
+
+//            String[] pizzaerSp = pizzaer.split(",");
+//            int[] pizzaerNummer = new int[pizzaerSp.length];
+
+//            for (int i = 0; i < pizzaerSp.length; i++) {
+//                pris += Menukort.pizzaChecker(pizzaerNummer[i]).getPris();
+//            }
+
             pizzaer = pizzaer.substring(0, pizzaer.length() - 1);
-            String query = "insert into bestilling values (null," + kundeId + ",'" + bes.getTid() + "','" + pizzaer + "'," + bes.getPris() + ");";
-            System.out.println(bes.getId());
+            String query = "insert into bestilling values (null," + kundeId + ",'" + tid + "','" + pizzaer + "'," + 12 + ");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 
@@ -40,13 +44,11 @@ public class DBCallsOrder {
         }
     }
 
-  
-
     public static void selectAllOrders() {
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        
+
         try {
             MyConnector = DBConnector.getConnector();
             String query = "SELECT * FROM order";
@@ -76,6 +78,5 @@ public class DBCallsOrder {
             Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
 }

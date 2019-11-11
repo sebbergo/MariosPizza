@@ -12,7 +12,6 @@ public class Bestilling implements Comparable<Object>{
     private Kunde kunde;
     private double pris = 0.0;
     private ArrayList<Pizza> pizza = new ArrayList();
-    
     private int id;
     private static int counter;
 
@@ -20,11 +19,11 @@ public class Bestilling implements Comparable<Object>{
         this.tid = tid;
         this.id = ++counter;
 
-        if (Statistik.checkKunde(tlfnr) == null) {
-            kunde = new Kunde(tlfnr, navn);
-        } else {
-            Statistik.checkKunde(tlfnr).setNavn(navn);
-        }
+//        if (Statistik.checkKunde(tlfnr) == null) {
+//            kunde = new Kunde(tlfnr, navn);
+//        } else {
+//            Statistik.checkKunde(tlfnr).setNavn(navn);
+//        }
 
         String[] pizzaer = pizzaNummer.split(",");
         int[] pizzaerNummer = new int[pizzaer.length];

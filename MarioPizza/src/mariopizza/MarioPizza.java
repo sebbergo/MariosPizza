@@ -3,11 +3,18 @@ package mariopizza;
 //import mariopizza.Controller.Controller;
 
 import GUI.NewJFrame;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import mariopizza.Datamappers.SqlWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsKunde;
+import mariopizza.Util.DBCallsOrder;
 import mariopizza.Util.DBCallsPizza;
+import mariopizza.Util.DBConnector;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
 
@@ -16,14 +23,14 @@ public class MarioPizza {
     public static void main(String[] args) {
 //       læser csv filen pizzaer og tilføjer dem
         //Menukort.menukortLoad();
+        
+        
+        
         firstload();
         load();
-        Menukort.printMenukort();
 
-        DBCallsKunde.selectKundeId(1234);
-
-        NewJFrame menu = new NewJFrame();
-        menu.setVisible(true);
+//        NewJFrame menu = new NewJFrame();
+//        menu.setVisible(true);
 
         //  Controller.run();
     }

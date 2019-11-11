@@ -33,7 +33,7 @@ public class SqlWriter {
 
             } //laver en try catch, for at finde csv filen.
         } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
+            System.out.println("Error:mere" + e.toString());
         }
     }
 
@@ -46,39 +46,36 @@ public class SqlWriter {
                 line = myScanner.nextLine();
                 String[] bes = line.split(";");
                 String tid = bes[0];
-                String navn = bes[1];
-                int tlf = Integer.parseInt(bes[2]);
+                int kundeId = Integer.parseInt(bes[1]);
 
                 String pizzaer = "";
-                for (int i = 3; i < bes.length; i++) {
+                for (int i = 2; i < bes.length; i++) {
                     pizzaer += bes[i] + ",";
                 }
 
-                Bestilling tempBes = new Bestilling(tid, pizzaer, navn, tlf);
-                Statistik.addBestilling(tempBes);
-                DBCallsOrder.insertToOrder(tempBes);
+                DBCallsOrder.insertToOrder(tid, kundeId, pizzaer);
 
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
+            System.out.println("Error: Her" + e);
         }
     }
 
     public static void insretKundeFromCsv() {
-        File file = new File("Data/Bestillinger.csv");
+        File file = new File("Data/kunder.csv");
         try {
             Scanner myScanner = new Scanner(file);
             String line = "";
             while (myScanner.hasNextLine()) {
                 line = myScanner.nextLine();
                 String[] bes = line.split(";");
-                String navn = bes[1];
-                int tlf = Integer.parseInt(bes[2]);
+                String navn = bes[0];
+                int tlf = Integer.parseInt(bes[1]);
 
                 DBCallsKunde.insertToKunde(navn, tlf);
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
+            System.out.println("Error: der" + e.toString());
         }
     }
 }
