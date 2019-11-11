@@ -4,7 +4,7 @@ package mariopizza.Controllers;
 import mariopizza.Model.Bestilling;
 import java.util.Scanner;
 import mariopizza.Model.Pizza;
-import mariopizza.Util.DBCalls;
+import mariopizza.Util.DBCallsPizza;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
 
@@ -248,6 +248,6 @@ public class Controller {
     
     public static void fjernPizza(int id){
         Menukort.getAllePizzaer().remove(Menukort.pizzaChecker(id));
-        DBCalls.deleteFromPizza(id);
+        DBCallsPizza.deleteFromPizza(id);
     }
 }

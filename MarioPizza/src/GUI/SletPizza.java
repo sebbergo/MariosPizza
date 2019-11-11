@@ -111,7 +111,7 @@ public class SletPizza extends javax.swing.JFrame {
     public void loadList() {
         DefaultListModel model = new DefaultListModel();
         for (Pizza pizza : Menukort.getAllePizzaer()) {
-            model.addElement("ID: " + pizza.getNummer());
+            model.addElement("ID: " + pizza.getNummer() + " Navn: " + pizza.getNavn());
         }
 
         jList1.setModel(model);

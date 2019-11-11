@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import mariopizza.Model.Pizza;
 import mariopizza.View.Menukort;
 
-public class DBCalls {
+public class DBCallsPizza {
 
     public static void insertToPizza(String navn, double pris, String fyld) {
 
@@ -26,9 +26,9 @@ public class DBCalls {
             statement.close();
             MyConnector.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -45,9 +45,9 @@ public class DBCalls {
             statement.close();
             MyConnector.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -62,10 +62,8 @@ public class DBCalls {
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 
-            ResultSetMetaData rsmd = resultSet.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
-//            int id = resultSet.getInt("pizza_id");
+//            int id = resultSet.getInt("order_id");
                 String navn = resultSet.getString("pizza_navn");
                 double pris = resultSet.getDouble("pizza_pris");
                 String fyld = resultSet.getString("pizza_fyld");
@@ -79,9 +77,9 @@ public class DBCalls {
             statement.close();
             MyConnector.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBCalls.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

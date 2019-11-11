@@ -10,7 +10,7 @@ public class Bestilling implements Comparable<Object>{
 
     private String tid;
     private Kunde kunde;
-    private double pris;
+    private double pris = 0.0;
     private ArrayList<Pizza> pizza = new ArrayList();
     
     private int id;
@@ -47,9 +47,23 @@ public class Bestilling implements Comparable<Object>{
         for (int i = 0; i < pizzaer.length; i++) {
             pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
+            this.pris += Menukort.pizzaChecker(pizzaerNummer[i]).getPris();
         }
     }
 
+    public double getPris() {
+        return pris;
+    }
+    
+    public String returnPizzaer(){
+        String retVal = "";
+        for (Pizza piz : pizza) {
+            retVal += piz.getNavn() + ", ";
+        }
+        retVal = retVal.substring(0, retVal.length() - 1);
+        return retVal;
+    }
+    
     public String printBes() {
         String retVal = "Pizzatype: ";
         for (Pizza p : pizza) {
