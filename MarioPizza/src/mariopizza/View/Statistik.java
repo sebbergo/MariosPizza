@@ -57,22 +57,22 @@ public class Statistik {
         bestillinger.remove(bestilling);
     }
     //printer bestillinger
-    public static void printBestilling() {
-        for (Bestilling bestilling : bestillinger) {
-            System.out.println("ID: " + bestilling.getId() + " | " + bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
-        }
-    }
+//    public static void printBestilling() {
+//        for (Bestilling bestilling : bestillinger) {
+//            System.out.println("ID: " + bestilling.getId() + " | " + bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
+//        }
+//    }
     //fjerner/tilføjer bestillinger til statistik
     public static void addBestillingStat(Bestilling bestilling) {
         bestillingerStat.add(bestilling);
     }
 
-    public static void printBestillingStat() {
-        for (Bestilling bestillingStat : bestillingerStat) {
-            System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn());
-
-        }
-    }
+//    public static void printBestillingStat() {
+//        for (Bestilling bestillingStat : bestillingerStat) {
+//            System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn());
+//
+//        }
+//    }
     //sortere vores bestillinger efter tid vha. vores compareTo metode i Bestilling.java
     public static void bestillingerEfterTid() {
         Collections.sort(bestillinger);
@@ -112,8 +112,8 @@ public class Statistik {
             fw = new FileWriter(file);
             for (Bestilling bes : bestillinger) {
                 fw.write(bes.getTid() + ";");
-                fw.write(bes.getKunde().getNavn() + ";");
-                fw.write(bes.getKunde().getNummer() + ";");
+                fw.write(Statistik.getKunder().get(bes.getKundeId() - 1).getNavn() + ";");
+                fw.write(Statistik.getKunder().get(bes.getKundeId() - 1).getId() + ";");
 
                 for (Pizza piz : bes.getPizza()) {
                     fw.write(piz.getNummer() + ";");

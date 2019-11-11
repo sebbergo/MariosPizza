@@ -211,7 +211,7 @@ public class Controller {
     public static void tilføjBestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
         Bestilling bes;
         if (tlfnr == 0) {
-            bes = new Bestilling(tid, pizzaNummer, navn);
+            bes = new Bestilling(tid, pizzaNummer, navn, 0);
         } else {
             bes = new Bestilling(tid, pizzaNummer, navn, tlfnr);
         }
