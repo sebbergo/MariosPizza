@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import mariopizza.Controllers.Controller;
 import static mariopizza.Controllers.Controller.tilføjBestilling;
+import mariopizza.Util.DBCallsOrder;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
 
@@ -176,7 +178,11 @@ public class NyBestilling extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void goBack() {
+        NewJFrame menu = new NewJFrame();
+        menu.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
+    }
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
@@ -203,12 +209,9 @@ public class NyBestilling extends javax.swing.JFrame {
                     String navn = jTextField4.getText();
                     int tlfnr = Integer.parseInt(jTextField5.getText());
                     
-                    System.out.println(tlfnr);
+                    DBCallsOrder.insertToOrder(tid, Controller.getKundeID(tlfnr, navn), pizzaNummere);
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
-                    Statistik.printBestilling();
-                    Statistik.gemBestillingerCsv();
-                    Statistik.bestillingerEfterTid();
-                    Statistik.gemBestillingerCsv();
+                    goBack();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

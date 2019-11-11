@@ -10,6 +10,8 @@ import mariopizza.Datamappers.SqlWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mariopizza.Model.Bestilling;
+import mariopizza.Model.Kunde;
 import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsKunde;
 import mariopizza.Util.DBCallsOrder;
@@ -23,21 +25,23 @@ public class MarioPizza {
     public static void main(String[] args) {
 //       læser csv filen pizzaer og tilføjer dem
         //Menukort.menukortLoad();
-        
-        
-        
-        firstload();
+
+        //firstload();
         load();
+        for (Bestilling bes : Statistik.getBestillinger()) {
+            System.out.println(bes.getPris());
+        }
 
-//        NewJFrame menu = new NewJFrame();
-//        menu.setVisible(true);
+        NewJFrame menu = new NewJFrame();
+        menu.setVisible(true);
 
-        //  Controller.run();
     }
 
     public static void load() {
         DBCallsPizza.selectAllPizza();
-        Statistik.StatLoad();
+        DBCallsKunde.selectAllKunder();
+        DBCallsOrder.selectAllOrders();
+//        Statistik.StatLoad();
     }
 
     public static void firstload() {
@@ -45,5 +49,6 @@ public class MarioPizza {
         SqlWriter.insretPizzaFromCsv();
         SqlWriter.insretKundeFromCsv();
         SqlWriter.insretOrderFromCsv();
+        load();
     }
 }

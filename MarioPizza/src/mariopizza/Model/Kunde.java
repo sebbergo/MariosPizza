@@ -10,7 +10,7 @@ public class Kunde {
     public Kunde(int nummer, String navn) {
         this.tlfNum = nummer;
         this.navn = navn;
-        this.id = counter++;
+        this.id = ++counter;
     }
 
     public int getId() {

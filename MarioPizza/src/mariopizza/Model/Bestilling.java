@@ -3,13 +3,14 @@ package mariopizza.Model;
 import mariopizza.Model.Kunde;
 import mariopizza.Model.Pizza;
 import java.util.ArrayList;
+import mariopizza.Controllers.Controller;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
 
 public class Bestilling implements Comparable<Object>{
 
     private String tid;
-    private Kunde kunde;
+    private int kundeId;
     private double pris = 0.0;
     private ArrayList<Pizza> pizza = new ArrayList();
     private int id;
@@ -18,6 +19,7 @@ public class Bestilling implements Comparable<Object>{
     public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
         this.tid = tid;
         this.id = ++counter;
+        this.kundeId = Controller.getKundeID(tlfnr, navn);
 
 //        if (Statistik.checkKunde(tlfnr) == null) {
 //            kunde = new Kunde(tlfnr, navn);
@@ -35,20 +37,24 @@ public class Bestilling implements Comparable<Object>{
         }
     }
 
-    public Bestilling(String tid, String pizzaNummer, String navn) {
-        this.tid = tid;
-        this.kunde = new Kunde(navn);
-        this.id = ++counter;
-
-        String[] pizzaer = pizzaNummer.split(",");
-        int[] pizzaerNummer = new int[pizzaer.length];
-
-        for (int i = 0; i < pizzaer.length; i++) {
-            pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
-            pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
-            this.pris += Menukort.pizzaChecker(pizzaerNummer[i]).getPris();
-        }
+    public int getKundeId() {
+        return kundeId;
     }
+
+//    public Bestilling(String tid, String pizzaNummer, String navn) {
+//        this.tid = tid;
+//        this.kunde = new Kunde(navn);
+//        this.id = ++counter;
+//
+//        String[] pizzaer = pizzaNummer.split(",");
+//        int[] pizzaerNummer = new int[pizzaer.length];
+//
+//        for (int i = 0; i < pizzaer.length; i++) {
+//            pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
+//            pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
+//            this.pris += Menukort.pizzaChecker(pizzaerNummer[i]).getPris();
+//        }
+//    }
 
     public double getPris() {
         return pris;
@@ -91,13 +97,13 @@ public class Bestilling implements Comparable<Object>{
         this.tid = tid;
     }
 
-    public Kunde getKunde() {
-        return kunde;
-    }
-
-    public void setKunde(Kunde kunde) {
-        this.kunde = kunde;
-    }
+//    public Kunde getKunde() {
+//        return kunde;
+//    }
+//
+//    public void setKunde(Kunde kunde) {
+//        this.kunde = kunde;
+//    }
 
     @Override
     public int compareTo(Object o) {

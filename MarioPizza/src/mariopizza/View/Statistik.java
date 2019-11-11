@@ -24,8 +24,12 @@ public class Statistik {
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
     // metode der tilføjer kunde til vores kunder-arraylist
-    public void addKunde(Kunde kunde) {
+    public static void addKunde(Kunde kunde) {
         kunder.add(kunde);
+    }
+
+    public static ArrayList<Kunde> getKunder() {
+        return kunder;
     }
     public static ArrayList<Bestilling> getBestillingerStat() {
         return bestillingerStat;

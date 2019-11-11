@@ -118,7 +118,7 @@ public class SletBes extends javax.swing.JFrame {
     public void loadList() {
         DefaultListModel model = new DefaultListModel();
         for (Bestilling bes : Statistik.getBestillinger()) {
-            model.addElement("ID: " + bes.getId() + " Navn: " + bes.getKunde().getNavn() + " Pizzaer: " + bes.returnPizzaer());
+            model.addElement("ID: " + bes.getId() + " Navn: " +  Statistik.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + Statistik.getKunder().get(bes.getKundeId() - 1).getNummer());
         }
 
         jList1.setModel(model);
