@@ -70,7 +70,7 @@ public class Controller {
                     }
 
                     tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
-                    Statistik.printBestilling();
+//                    Statistik.printBestilling();
                     Statistik.gemBestillingerCsv();
                     Statistik.bestillingerEfterTid();
                     Statistik.gemBestillingerCsv();
@@ -78,7 +78,7 @@ public class Controller {
 
                 case 2:
                     //fjern eksisterende bestilling
-                    Statistik.printBestilling();
+//                    Statistik.printBestilling();
                     int bestillingId = 0;
                     tempInput = getUserText("Skriv nummer på den bestilling du ønsker at fjerne");
                     if (!tempInput.contains("stop")) {
@@ -145,7 +145,7 @@ public class Controller {
 
                             break;
                         case 2:
-                            Statistik.printBestilling();
+//                            Statistik.printBestilling();
                             break;
 
                     }

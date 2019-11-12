@@ -179,7 +179,7 @@ public class NyBestilling extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void goBack() {
-        NewJFrame menu = new NewJFrame();
+        MainMenu menu = new MainMenu();
         menu.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
     }
@@ -189,7 +189,7 @@ public class NyBestilling extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        NewJFrame menu = new NewJFrame();
+        MainMenu menu = new MainMenu();
         menu.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButton1ActionPerformed

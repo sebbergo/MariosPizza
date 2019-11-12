@@ -147,7 +147,7 @@ public class SletBes extends javax.swing.JFrame {
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         // TODO add your handling code here:
-        NewJFrame menu = new NewJFrame();
+        MainMenu menu = new MainMenu();
         menu.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
     }//GEN-LAST:event_button3ActionPerformed

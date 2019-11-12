@@ -1,5 +1,6 @@
 package mariopizza.View;
 //@author Lukas
+
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Kunde;
@@ -17,12 +18,14 @@ import java.util.logging.Logger;
 import static mariopizza.View.Menukort.makePizza;
 
 public class Statistik {
+
     //path til vores csv-fil der holder på bestillinger
     private static String filename = "Data/Bestillinger.csv";
     //oprettelse af arraylists, til statistik, bestillinger og kunder
     private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
+
     // metode der tilføjer kunde til vores kunder-arraylist
     public static void addKunde(Kunde kunde) {
         kunder.add(kunde);
@@ -31,6 +34,7 @@ public class Statistik {
     public static ArrayList<Kunde> getKunder() {
         return kunder;
     }
+
     public static ArrayList<Bestilling> getBestillingerStat() {
         return bestillingerStat;
     }
@@ -38,6 +42,7 @@ public class Statistik {
     public static ArrayList<Bestilling> getBestillinger() {
         return bestillinger;
     }
+
     //metode der checker om en given kundes telefonnummer allerede eksistere under
     //andet navn, og retunere nyt navn til samme nummer
     public static Kunde checkKunde(int tlfnr) {
@@ -48,6 +53,7 @@ public class Statistik {
         }
         return null;
     }
+
     //Fjerner og tilføjer bestillinger
     public static void addBestilling(Bestilling bestilling) {
         bestillinger.add(bestilling);
@@ -56,6 +62,7 @@ public class Statistik {
     public static void removeBestilling(Bestilling bestilling) {
         bestillinger.remove(bestilling);
     }
+
     //printer bestillinger
 //    public static void printBestilling() {
 //        for (Bestilling bestilling : bestillinger) {
@@ -91,16 +98,40 @@ public class Statistik {
 
     //Metoden går ind og printer alle de pizzaer der er tilføjet til
     //bestillinger i statistikken
-    public static void printAntalKøbtePizzaer() {
+    public static int[] printAntalKøbtePizzaer() {
         int[] antalPizzaer = new int[Menukort.getAllePizzaer().size()];
-        for (Bestilling bestilling : bestillingerStat) {
+        for (Bestilling bestilling : bestillinger) {
             for (Pizza piz : bestilling.getPizza()) {
                 antalPizzaer[piz.getNummer() - 1]++;
             }
         }
-        for (int i = 0; i < antalPizzaer.length; i++) {
-            System.out.println("Pizza nummer: " + i + ": "+antalPizzaer[i]);
+        return antalPizzaer;
+    }
+
+    public static ArrayList<Pizza>[] pizzaerKøbAfKunde() {
+        ArrayList<Pizza>[] købtPiz = new ArrayList[Statistik.getKunder().size()];
+
+        for (int i = 0; i < Statistik.getKunder().size(); i++) {
+            købtPiz[i] = new ArrayList<Pizza>();
         }
+
+        for (Bestilling bes : Statistik.getBestillinger()) {
+            for (Pizza pizza : bes.getPizza()) {
+                købtPiz[bes.getKundeId() - 1].add(pizza);
+            }
+        }
+        return købtPiz;
+    }
+
+    public static int[] kundeAntalKøbtePizzaer() {
+        ArrayList<Pizza>[] købtPiz = pizzaerKøbAfKunde();
+        int[] antal = new int[Statistik.getKunder().size()];
+        for (int i = 0; i < antal.length; i++) {
+            for (Pizza piz : købtPiz[i]) {
+                antal[i]++;
+            }
+        }
+        return antal;
     }
 
     //Metode der hjælper med at gemme pizzaer i vores csv fil efter der bliver

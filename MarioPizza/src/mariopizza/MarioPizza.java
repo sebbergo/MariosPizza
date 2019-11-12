@@ -2,7 +2,7 @@ package mariopizza;
 //@author Lukas
 //import mariopizza.Controller.Controller;
 
-import GUI.NewJFrame;
+import GUI.MainMenu;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +19,7 @@ import mariopizza.Util.DBCallsPizza;
 import mariopizza.Util.DBConnector;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
+import static mariopizza.View.Statistik.pizzaerKøbAfKunde;
 
 public class MarioPizza {
 
@@ -27,28 +28,12 @@ public class MarioPizza {
         //Menukort.menukortLoad();
 
         //firstload();
-        load();
-        for (Bestilling bes : Statistik.getBestillinger()) {
-            System.out.println(bes.getPris());
-        }
+        //load();
 
-        NewJFrame menu = new NewJFrame();
-        menu.setVisible(true);
+        Run run = new Run();
+        run.setVisible(true);
+        
 
-    }
 
-    public static void load() {
-        DBCallsPizza.selectAllPizza();
-        DBCallsKunde.selectAllKunder();
-        DBCallsOrder.selectAllOrders();
-//        Statistik.StatLoad();
-    }
-
-    public static void firstload() {
-        //Skriver alle pizzaer ind i tabelen
-        SqlWriter.insretPizzaFromCsv();
-        SqlWriter.insretKundeFromCsv();
-        SqlWriter.insretOrderFromCsv();
-        load();
     }
 }

@@ -13,12 +13,12 @@ import mariopizza.View.Menukort;
  *
  * @author marcg
  */
-public class LavNyPizza extends javax.swing.JFrame {
+public class NyPizza extends javax.swing.JFrame {
 
     /**
      * Creates new form LavNyPizza
      */
-    public LavNyPizza() {
+    public NyPizza() {
         initComponents();
     }
 
@@ -41,7 +41,6 @@ public class LavNyPizza extends javax.swing.JFrame {
         button2 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 700));
         setSize(new java.awt.Dimension(700, 700));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +129,7 @@ public class LavNyPizza extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void goBack() {
-        NewJFrame menu = new NewJFrame();
+        MainMenu menu = new MainMenu();
         menu.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
     }
@@ -182,20 +181,23 @@ public class LavNyPizza extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LavNyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LavNyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LavNyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LavNyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LavNyPizza().setVisible(true);
+                new NyPizza().setVisible(true);
             }
         });
     }
