@@ -5,7 +5,11 @@
  */
 package GUI;
 
+import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import mariopizza.Model.Pizza;
 import mariopizza.View.Menukort;
 import mariopizza.View.StatFunctions;
@@ -23,6 +27,7 @@ public class Stat extends javax.swing.JFrame {
      */
     public Stat() {
         initComponents();
+        jList1.addListSelectionListener(listSelectionListener);
     }
 
     /**
@@ -102,21 +107,48 @@ public class Stat extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        ListSelectionListener listSelectionListener = new ListSelectionListener() {
+        @Override
+        public void valueChanged(ListSelectionEvent listSelectionEvent) {
+            boolean adjust = listSelectionEvent.getValueIsAdjusting();
+
+            if (!adjust) {
+                JList list = (JList) listSelectionEvent.getSource();
+                int selections[] = list.getSelectedIndices();
+                Object selectionValues[] = list.getSelectedValues();
+                for (int i = 0, n = selections.length; i < n; i++) {
+                    //hvad den skal kalde;
+
+                    seMere(selections[0]);
+                }
+            }
+        }
+    };
+
+    private void seMere(int id) {
+        KundeInfo kundeInfo = new KundeInfo();
+        kundeInfo.setId(id);
+        kundeInfo.getjLabel1().setText("ID: " + id);
+        kundeInfo.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
+
+    }
+
     public void goBack() {
         MainMenu menu = new MainMenu();
         menu.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
     }
-    
+
     public void loadAntalPizzaer() {
         DefaultListModel model = new DefaultListModel();
         for (int i = 0; i < Statistik.printAntalKøbtePizzaer().length; i++) {
-            model.addElement("Nummer: " + (i + 1) + " Solgte: " + Statistik.printAntalKøbtePizzaer()[i] + " Samlet beløb: " + (Statistik.printAntalKøbtePizzaer()[i] * Menukort.pizzaChecker(i+1).getPris()));
+            model.addElement("Nummer: " + (i + 1) + " Solgte: " + Statistik.printAntalKøbtePizzaer()[i] + " Samlet beløb: " + (Statistik.printAntalKøbtePizzaer()[i] * Menukort.pizzaChecker(i + 1).getPris()));
         }
 
         jList1.setModel(model);
     }
-    
+
     public void loadAntalPrKunde() {
         DefaultListModel model = new DefaultListModel();
         int[] antal = kundeAntalKøbtePizzaer();
@@ -125,6 +157,7 @@ public class Stat extends javax.swing.JFrame {
         }
 
         jList1.setModel(model);
+
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
