@@ -1,34 +1,14 @@
 package mariopizza;
-//@author Lukas
-//import mariopizza.Controller.Controller;
+/*
+1. lave regler for text
+2. lave regler for for der ikke kan være kunder med samme tlf nummer 
 
-import GUI.MainMenu;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import mariopizza.Datamappers.SqlWriter;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import mariopizza.Model.Bestilling;
-import mariopizza.Model.Kunde;
-import mariopizza.Model.Pizza;
-import mariopizza.Util.DBCallsKunde;
-import mariopizza.Util.DBCallsOrder;
-import mariopizza.Util.DBCallsPizza;
-import mariopizza.Util.DBConnector;
-import mariopizza.Util.ArrayListHolder;
-import mariopizza.Util.ArrayListHolder;
-
+*/
 
 public class MarioPizza {
 
     public static void main(String[] args) {
-//       læser csv filen pizzaer og tilføjer dem
-        //Menukort.menukortLoad();
 
-        //firstload();
-        //load();
 
         Run run = new Run();
         run.setVisible(true);
