@@ -13,6 +13,7 @@ public class Bestilling implements Comparable<Object>{
     private int kundeId;
     private double pris = 0.0;
     private ArrayList<Pizza> pizza = new ArrayList();
+    private String pizzaerString = "";
     private int id;
     private static int counter;
 
@@ -20,6 +21,7 @@ public class Bestilling implements Comparable<Object>{
         this.tid = tid;
         this.id = ++counter;
         this.kundeId = Controller.getKundeID(tlfnr, navn);
+        this.pizzaerString = pizzaNummer;
 
 //        if (Statistik.checkKunde(tlfnr) == null) {
 //            kunde = new Kunde(tlfnr, navn);
@@ -35,6 +37,10 @@ public class Bestilling implements Comparable<Object>{
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
             this.pris += Menukort.pizzaChecker(pizzaerNummer[i]).getPris();
         }
+    }
+
+    public String getPizzaerString() {
+        return pizzaerString;
     }
 
     public int getKundeId() {

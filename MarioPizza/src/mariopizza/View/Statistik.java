@@ -108,32 +108,6 @@ public class Statistik {
         return antalPizzaer;
     }
 
-    public static ArrayList<Pizza>[] pizzaerKøbAfKunde() {
-        ArrayList<Pizza>[] købtPiz = new ArrayList[Statistik.getKunder().size()];
-
-        for (int i = 0; i < Statistik.getKunder().size(); i++) {
-            købtPiz[i] = new ArrayList<Pizza>();
-        }
-
-        for (Bestilling bes : Statistik.getBestillinger()) {
-            for (Pizza pizza : bes.getPizza()) {
-                købtPiz[bes.getKundeId() - 1].add(pizza);
-            }
-        }
-        return købtPiz;
-    }
-
-    public static int[] kundeAntalKøbtePizzaer() {
-        ArrayList<Pizza>[] købtPiz = pizzaerKøbAfKunde();
-        int[] antal = new int[Statistik.getKunder().size()];
-        for (int i = 0; i < antal.length; i++) {
-            for (Pizza piz : købtPiz[i]) {
-                antal[i]++;
-            }
-        }
-        return antal;
-    }
-
     //Metode der hjælper med at gemme pizzaer i vores csv fil efter der bliver
     //ændret i den
     public static void gemBestillingerCsv() {

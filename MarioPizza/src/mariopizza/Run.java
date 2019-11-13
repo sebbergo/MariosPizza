@@ -12,7 +12,7 @@ import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsKunde;
 import mariopizza.Util.DBCallsOrder;
 import mariopizza.Util.DBCallsPizza;
-import static mariopizza.View.Statistik.pizzaerKøbAfKunde;
+
 
 /**
  *

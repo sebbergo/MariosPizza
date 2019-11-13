@@ -19,7 +19,7 @@ import mariopizza.Util.DBCallsPizza;
 import mariopizza.Util.DBConnector;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
-import static mariopizza.View.Statistik.pizzaerKøbAfKunde;
+
 
 public class MarioPizza {
 

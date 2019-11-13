@@ -14,7 +14,7 @@ import mariopizza.Model.Pizza;
 import mariopizza.View.Menukort;
 import mariopizza.View.StatFunctions;
 import mariopizza.View.Statistik;
-import static mariopizza.View.Statistik.kundeAntalKøbtePizzaer;
+import mariopizza.View.StatistikKunde;
 
 /**
  *
@@ -128,7 +128,6 @@ public class Stat extends javax.swing.JFrame {
     private void seMere(int id) {
         KundeInfo kundeInfo = new KundeInfo();
         kundeInfo.setId(id);
-        kundeInfo.getjLabel1().setText("ID: " + id);
         kundeInfo.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
 
@@ -151,7 +150,7 @@ public class Stat extends javax.swing.JFrame {
 
     public void loadAntalPrKunde() {
         DefaultListModel model = new DefaultListModel();
-        int[] antal = kundeAntalKøbtePizzaer();
+        int[] antal = StatistikKunde.kundeAntalKøbtePizzaer();
         for (int i = 0; i < antal.length; i++) {
             model.addElement("Navn: " + Statistik.getKunder().get(i).getNavn() + " Telefon: " + Statistik.getKunder().get(i).getNummer() + " Antal købt pizzaer: " + antal[i]);
         }
