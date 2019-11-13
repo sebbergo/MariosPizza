@@ -34,6 +34,7 @@
                           <Component id="button2" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
                           <Component id="button4" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
                           <Component id="button5" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
+                          <Component id="button6" alignment="1" min="-2" pref="325" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -52,12 +53,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="button1" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="button6" min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="button2" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="button4" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="button5" min="-2" pref="69" max="-2" attributes="0"/>
-              <EmptySpace pref="350" max="32767" attributes="0"/>
+              <EmptySpace pref="271" max="32767" attributes="0"/>
               <Component id="button3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -90,7 +93,7 @@
     </Container>
     <Component class="java.awt.Button" name="button1">
       <Properties>
-        <Property name="label" type="java.lang.String" value="Load"/>
+        <Property name="label" type="java.lang.String" value="Se order der skal laves"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
@@ -126,6 +129,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.Button" name="button6">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="Mere info om orden"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button6ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

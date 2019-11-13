@@ -8,8 +8,8 @@ package GUI;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsOrder;
-import mariopizza.View.Menukort;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
+import mariopizza.View.ArrayListHolder;
 
 /**
  *
@@ -211,7 +211,7 @@ public class NyBestilling extends javax.swing.JFrame {
                     
                     DBCallsOrder.insertToOrder(tid, Controller.getKundeID(tlfnr, navn), pizzaNummere);
                     Bestilling bes = new Bestilling(tid, pizzaNummere, navn, tlfnr, "Bestilte");
-                    Statistik.addBestilling(bes);
+                    ArrayListHolder.addBestilling(bes);
                     goBack();
     }//GEN-LAST:event_jButton2ActionPerformed
 

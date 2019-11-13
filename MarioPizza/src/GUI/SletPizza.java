@@ -9,9 +9,9 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Pizza;
-import mariopizza.View.Menukort;
+import mariopizza.View.ArrayListHolder;
 
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
 
 /**
  *
@@ -110,7 +110,7 @@ public class SletPizza extends javax.swing.JFrame {
 
     public void loadList() {
         DefaultListModel model = new DefaultListModel();
-        for (Pizza pizza : Menukort.getAllePizzaer()) {
+        for (Pizza pizza : ArrayListHolder.getAllePizzaer()) {
             model.addElement("ID: " + pizza.getNummer() + " Navn: " + pizza.getNavn());
         }
 

@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Kunde;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
 
 public class DBCallsKunde {
 
@@ -51,7 +51,7 @@ public class DBCallsKunde {
                 String navn = resultSet.getString("kunde_navn");
 
                 Kunde tempKunde = new Kunde(tlf, navn); 
-                Statistik.addKunde(tempKunde);
+                ArrayListHolder.addKunde(tempKunde);
             }
 
             //lukker

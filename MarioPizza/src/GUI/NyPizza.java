@@ -7,7 +7,7 @@ package GUI;
 
 import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsPizza;
-import mariopizza.View.Menukort;
+import mariopizza.View.ArrayListHolder;
 
 /**
  *
@@ -151,7 +151,7 @@ public class NyPizza extends javax.swing.JFrame {
         
         Pizza tempPizza = new Pizza(pizzaNavn, pizzaPris, fyld);
         
-        Menukort.addPizza(tempPizza);
+        ArrayListHolder.addPizza(tempPizza);
         DBCallsPizza.insertToPizza(pizzaNavn, pizzaPris, fyld);
         goBack();
     }//GEN-LAST:event_button1ActionPerformed

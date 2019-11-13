@@ -8,7 +8,7 @@ public class StatistikKunde {
 
     public static Pizza getKundeFavPiz(int id) {
         Pizza tempPizza = null;
-        int[] antal = new int[Statistik.getKunder().size()];
+        int[] antal = new int[ArrayListHolder.getKunder().size()];
         ArrayList<Pizza> kundensPizzaer = pizzaerKøbAfKunde()[id];
         int most = 0;
         for (Pizza pizza : kundensPizzaer) {
@@ -18,17 +18,17 @@ public class StatistikKunde {
             antal[pizza.getNummer() - 1]++;
         }
 
-        return Menukort.getAllePizzaer().get(most);
+        return ArrayListHolder.getAllePizzaer().get(most);
     }
 
     public static ArrayList<Pizza>[] pizzaerKøbAfKunde() {
-        ArrayList<Pizza>[] købtPiz = new ArrayList[Statistik.getKunder().size()];
+        ArrayList<Pizza>[] købtPiz = new ArrayList[ArrayListHolder.getKunder().size()];
 
-        for (int i = 0; i < Statistik.getKunder().size(); i++) {
+        for (int i = 0; i < ArrayListHolder.getKunder().size(); i++) {
             købtPiz[i] = new ArrayList<Pizza>();
         }
 
-        for (Bestilling bes : Statistik.getBestillinger()) {
+        for (Bestilling bes : ArrayListHolder.getBestillinger()) {
             for (Pizza pizza : bes.getPizza()) {
                 købtPiz[bes.getKundeId() - 1].add(pizza);
             }
@@ -38,7 +38,7 @@ public class StatistikKunde {
 
     public static int[] kundeAntalKøbtePizzaer() {
         ArrayList<Pizza>[] købtPiz = pizzaerKøbAfKunde();
-        int[] antal = new int[Statistik.getKunder().size()];
+        int[] antal = new int[ArrayListHolder.getKunder().size()];
         for (int i = 0; i < antal.length; i++) {
             for (Pizza piz : købtPiz[i]) {
                 antal[i]++;
@@ -50,12 +50,12 @@ public class StatistikKunde {
     public static Bestilling getLastOrder(int id ){
         
         int bestillingsID = 0;
-        for (Bestilling bestilling : Statistik.getBestillinger()) {
+        for (Bestilling bestilling : ArrayListHolder.getBestillinger()) {
             if(bestilling.getKundeId() == id){
                 bestillingsID = bestilling.getId();
             } 
         }
-        return Statistik.getBestillinger().get(bestillingsID);
+        return ArrayListHolder.getBestillinger().get(bestillingsID);
     }
     
     public static double getKundebeløbBrugt(int id){

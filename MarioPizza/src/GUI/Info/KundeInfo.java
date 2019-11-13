@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Info;
 
+import GUI.MainMenu;
+import GUI.MainMenu;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
 import mariopizza.View.StatistikKunde;
 
 /**
@@ -23,9 +25,9 @@ public class KundeInfo extends javax.swing.JFrame {
     public void setId(int kundeId) {
         int id = kundeId + 1;
         jLabel1.setText("ID: " + id);
-        jLabel2.setText("Navn: " + Statistik.getKunder().get(id).getNavn());
-        jLabel3.setText("ID: " + Statistik.getKunder().get(id).getNummer());
-        jLabel4.setText("Favorit pizza " + StatistikKunde.getKundeFavPiz(id) + " | Nummer: " + StatistikKunde.getKundeFavPiz(id).getNummer());
+        jLabel2.setText("Navn: " + ArrayListHolder.getKunder().get(id).getNavn());
+        jLabel3.setText("ID: " + ArrayListHolder.getKunder().get(id).getNummer());
+        jLabel4.setText("Favorit pizza: " + StatistikKunde.getKundeFavPiz(id).getNavn() + " | Nummer: " + StatistikKunde.getKundeFavPiz(id).getNummer());
         jLabel5.setText("Antal købte pizzaer: " + StatistikKunde.kundeAntalKøbtePizzaer()[id]);
         jLabel6.setText("Last order tid: " + StatistikKunde.getLastOrder(id).getTid() + " Pizzaer: " + StatistikKunde.getLastOrder(id).getPizzaerString());
         jLabel7.setText("Beløb brugt: " + StatistikKunde.getKundebeløbBrugt(id));

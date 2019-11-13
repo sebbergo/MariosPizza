@@ -15,33 +15,16 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static mariopizza.View.Menukort.makePizza;
 
-public class Statistik {
+public class ArrayListHolder {
 
     //path til vores csv-fil der holder på bestillinger
     private static String filename = "Data/Bestillinger.csv";
     //oprettelse af arraylists, til statistik, bestillinger og kunder
+    private static ArrayList<Pizza> allePizzaer = new ArrayList();
+    private static ArrayList<Kunde> kunder = new ArrayList();
     private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
-    private static ArrayList<Kunde> kunder = new ArrayList();
-
-    // metode der tilføjer kunde til vores kunder-arraylist
-    public static void addKunde(Kunde kunde) {
-        kunder.add(kunde);
-    }
-
-    public static ArrayList<Kunde> getKunder() {
-        return kunder;
-    }
-
-    public static ArrayList<Bestilling> getBestillingerStat() {
-        return bestillingerStat;
-    }
-
-    public static ArrayList<Bestilling> getBestillinger() {
-        return bestillinger;
-    }
 
     //metode der checker om en given kundes telefonnummer allerede eksistere under
     //andet navn, og retunere nyt navn til samme nummer
@@ -63,23 +46,11 @@ public class Statistik {
         bestillinger.remove(bestilling);
     }
 
-    //printer bestillinger
-//    public static void printBestilling() {
-//        for (Bestilling bestilling : bestillinger) {
-//            System.out.println("ID: " + bestilling.getId() + " | " + bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
-//        }
-//    }
     //fjerner/tilføjer bestillinger til statistik
     public static void addBestillingStat(Bestilling bestilling) {
         bestillingerStat.add(bestilling);
     }
-
-//    public static void printBestillingStat() {
-//        for (Bestilling bestillingStat : bestillingerStat) {
-//            System.out.println(bestillingStat.getTid() + " , " + bestillingStat.printBes() + " " + bestillingStat.getKunde().getNavn());
-//
-//        }
-//    }
+    
     //sortere vores bestillinger efter tid vha. vores compareTo metode i Bestilling.java
     public static void bestillingerEfterTid() {
         Collections.sort(bestillinger);
@@ -99,7 +70,7 @@ public class Statistik {
     //Metoden går ind og printer alle de pizzaer der er tilføjet til
     //bestillinger i statistikken
     public static int[] printAntalKøbtePizzaer() {
-        int[] antalPizzaer = new int[Menukort.getAllePizzaer().size()];
+        int[] antalPizzaer = new int[allePizzaer.size()];
         for (Bestilling bestilling : bestillinger) {
             for (Pizza piz : bestilling.getPizza()) {
                 antalPizzaer[piz.getNummer() - 1]++;
@@ -108,52 +79,47 @@ public class Statistik {
         return antalPizzaer;
     }
 
-    //Metode der hjælper med at gemme pizzaer i vores csv fil efter der bliver
-    //ændret i den
-    public static void gemBestillingerCsv() {
-        File file = new File(filename);
-        FileWriter fw;
-        try {
-            fw = new FileWriter(file);
-            for (Bestilling bes : bestillinger) {
-                fw.write(bes.getTid() + ";");
-                fw.write(Statistik.getKunder().get(bes.getKundeId() - 1).getNavn() + ";");
-                fw.write(Statistik.getKunder().get(bes.getKundeId() - 1).getId() + ";");
-
-                for (Pizza piz : bes.getPizza()) {
-                    fw.write(piz.getNummer() + ";");
-                }
-                fw.write("\n");
-            }
-            fw.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(Menukort.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-
+    public static void addPizza(Pizza pizza) {
+        allePizzaer.add(pizza);
     }
 
-    //Metode der loader statistikken
-//    public static void StatLoad() {
-//        File file = new File(filename);
-//        try {
-//            Scanner myScanner = new Scanner(file);
-//            String line = "";
-//            while (myScanner.hasNextLine()) {
-//                line = myScanner.nextLine();
-//                String[] bes = line.split(";");
-//                String tid = bes[0];
-//                int nummer = Integer.parseInt(bes[2]);
-//
-//                String pizzaer = "";
-//                for (int i = 3; i < bes.length; i++) {
-//                    pizzaer += bes[i] + ",";
-//                }
-//                Controller.tilføjBestilling(tid, pizzaer, bes[1], nummer);
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Error: " + e.toString());
-//        }
-//    }
+    public static void removePizza(int id) {
+        allePizzaer.remove(pizzaChecker(id));
+    }
+
+    public static void printPizza() {
+        for (Pizza pizza : allePizzaer) {
+            System.out.println(pizza.getNummer() + ": " + pizza.getNavn());
+        }
+    }
+
+    public static Pizza pizzaChecker(int nummer) {
+        for (Pizza pizza : allePizzaer) {
+            if (pizza.getNummer() == nummer) {
+                return pizza;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Pizza> getAllePizzaer() {
+        return allePizzaer;
+    }
+    
+        // metode der tilføjer kunde til vores kunder-arraylist
+    public static void addKunde(Kunde kunde) {
+        kunder.add(kunde);
+    }
+
+    public static ArrayList<Kunde> getKunder() {
+        return kunder;
+    }
+
+    public static ArrayList<Bestilling> getBestillingerStat() {
+        return bestillingerStat;
+    }
+
+    public static ArrayList<Bestilling> getBestillinger() {
+        return bestillinger;
+    }
 }

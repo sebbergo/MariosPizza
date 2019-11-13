@@ -5,13 +5,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Pizza;
-import mariopizza.View.Menukort;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
+import mariopizza.View.ArrayListHolder;
 
 public class DBCallsOrder {
 
@@ -80,9 +81,9 @@ public class DBCallsOrder {
                 String fyld = resultSet.getString("order_pris");
                 String status = resultSet.getString("order_status");
 
-                Bestilling tempBes = new Bestilling(tid, pizzaer, Statistik.getKunder().get(kundeId - 1).getNavn(), Statistik.getKunder().get(kundeId - 1).getNummer(), status);
+                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status);
 
-                Statistik.addBestilling(tempBes);
+                ArrayListHolder.addBestilling(tempBes);
             }
 
             //lukker
@@ -94,5 +95,45 @@ public class DBCallsOrder {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static ArrayList<Bestilling> selectAllOrdersOrderedByTime() {
+        Connection MyConnector = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        ArrayList<Bestilling> bestillinger = new ArrayList();
+
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "SELECT * FROM bestilling order by order_tid";
+            statement = MyConnector.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (resultSet.next()) {
+//            int id = resultSet.getInt("pizza_id");
+                String tid = resultSet.getString("order_tid");
+                int kundeId = resultSet.getInt("kunde_id");
+
+                String pizzaer = resultSet.getString("order_pizzaer");
+                String fyld = resultSet.getString("order_pris");
+                String status = resultSet.getString("order_status");
+
+                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status);
+
+                bestillinger.add(tempBes);
+            }
+
+            //lukker
+            resultSet.close();;
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bestillinger;
     }
 }

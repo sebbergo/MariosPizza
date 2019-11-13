@@ -5,15 +5,16 @@
  */
 package GUI;
 
+import GUI.Info.KundeInfo;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import mariopizza.Model.Pizza;
-import mariopizza.View.Menukort;
+import mariopizza.View.ArrayListHolder;
 import mariopizza.View.StatFunctions;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
 import mariopizza.View.StatistikKunde;
 
 /**
@@ -141,8 +142,8 @@ public class Stat extends javax.swing.JFrame {
 
     public void loadAntalPizzaer() {
         DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < Statistik.printAntalKøbtePizzaer().length; i++) {
-            model.addElement("Nummer: " + (i + 1) + " Solgte: " + Statistik.printAntalKøbtePizzaer()[i] + " Samlet beløb: " + (Statistik.printAntalKøbtePizzaer()[i] * Menukort.pizzaChecker(i + 1).getPris()));
+        for (int i = 0; i < ArrayListHolder.printAntalKøbtePizzaer().length; i++) {
+            model.addElement("Nummer: " + (i + 1) + " Solgte: " + ArrayListHolder.printAntalKøbtePizzaer()[i] + " Samlet beløb: " + (ArrayListHolder.printAntalKøbtePizzaer()[i] * ArrayListHolder.pizzaChecker(i + 1).getPris()));
         }
 
         jList1.setModel(model);
@@ -152,7 +153,7 @@ public class Stat extends javax.swing.JFrame {
         DefaultListModel model = new DefaultListModel();
         int[] antal = StatistikKunde.kundeAntalKøbtePizzaer();
         for (int i = 0; i < antal.length; i++) {
-            model.addElement("Navn: " + Statistik.getKunder().get(i).getNavn() + " Telefon: " + Statistik.getKunder().get(i).getNummer() + " Antal købt pizzaer: " + antal[i]);
+            model.addElement("Navn: " + ArrayListHolder.getKunder().get(i).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(i).getNummer() + " Antal købt pizzaer: " + antal[i]);
         }
 
         jList1.setModel(model);

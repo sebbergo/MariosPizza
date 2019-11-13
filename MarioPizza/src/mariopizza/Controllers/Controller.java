@@ -7,8 +7,8 @@ import mariopizza.Model.Kunde;
 import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsKunde;
 import mariopizza.Util.DBCallsPizza;
-import mariopizza.View.Menukort;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
+import mariopizza.View.ArrayListHolder;
 
 public class Controller {
 
@@ -19,8 +19,8 @@ public class Controller {
         boolean exitValue = true;
         String tempInput = "";
 
-        Statistik.bestillingerEfterTid();
-        Statistik.gemBestillingerCsv();
+        ArrayListHolder.bestillingerEfterTid();
+//        Statistik.gemBestillingerCsv();
 
         while (exitValue) {
             int cases = 1;
@@ -71,9 +71,9 @@ public class Controller {
 
 //                    tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
 //                    Statistik.printBestilling();
-                    Statistik.gemBestillingerCsv();
-                    Statistik.bestillingerEfterTid();
-                    Statistik.gemBestillingerCsv();
+//                    Statistik.gemBestillingerCsv();
+//                    Statistik.bestillingerEfterTid();
+//                    Statistik.gemBestillingerCsv();
                     break;
 
                 case 2:
@@ -88,8 +88,8 @@ public class Controller {
                     }
 
                     fjernBestilling(bestillingId);
-                    Statistik.bestillingerEfterTid();
-                    Statistik.gemBestillingerCsv();
+                    ArrayListHolder.bestillingerEfterTid();
+//                    Statistik.gemBestillingerCsv();
                     break;
                 case 3:
                     //Lav en ny pizza der bliver tilføjet til csv fil
@@ -116,13 +116,13 @@ public class Controller {
                         break;
                     }
 
-                    Menukort.addPizzaToCsv(pizzaNavn, pizzaPris, fyld);
-                    Menukort.gemCsv();
+//                    Menukort.addPizzaToCsv(pizzaNavn, pizzaPris, fyld);
+//                    Menukort.gemCsv();
                     break;
 
                 case 4:
                     //Fjern eksisterende pizza fra csv fil
-                    Menukort.printPizza();
+                    ArrayListHolder.printPizza();
                     int pizzaId = 0;
                     tempInput = getUserText("Skriv nummer på pizza du ønsker at slette");
                     if (!tempInput.contains("stop")) {
@@ -131,7 +131,7 @@ public class Controller {
                         break;
                     }
 
-                    Menukort.sletLine(pizzaId);
+//                    Menukort.sletLine(pizzaId);
                     break;
 
                 case 5:
@@ -141,7 +141,7 @@ public class Controller {
                             + "Skriv 2 for at se bestillinger");
                     switch (cases) {
                         case 1:
-                            Statistik.printAntalKøbtePizzaer();
+                            ArrayListHolder.printAntalKøbtePizzaer();
 
                             break;
                         case 2:
@@ -153,7 +153,7 @@ public class Controller {
 
                 //Se menukort
                 case 6:
-                    Menukort.printMenukort();
+//                    Menukort.printMenukort();
                     break;
 
                 //Luk program
@@ -221,9 +221,9 @@ public class Controller {
 
     //Fjern bestilling fra bestillingsliste array, hvis bestillingen findes
     public static void fjernBestilling(int id) {
-        Bestilling bes = Statistik.bestillingChecker(id);
+        Bestilling bes = ArrayListHolder.bestillingChecker(id);
         if (bes != null) {
-            Statistik.removeBestilling(bes);
+            ArrayListHolder.removeBestilling(bes);
         }
     }
 
@@ -249,7 +249,7 @@ public class Controller {
     }
     
     public static void fjernPizza(int id){
-        Menukort.getAllePizzaer().remove(Menukort.pizzaChecker(id));
+        ArrayListHolder.getAllePizzaer().remove(ArrayListHolder.pizzaChecker(id));
         DBCallsPizza.deleteFromPizza(id);
     }
     
@@ -257,7 +257,7 @@ public class Controller {
         double retVal = 0;
         String[] pizza = pizzaer.split(",");
         for (int i = 0; i < pizza.length; i++) {
-            retVal += Menukort.pizzaChecker(Integer.parseInt(pizza[i])).getPris();
+            retVal += ArrayListHolder.pizzaChecker(Integer.parseInt(pizza[i])).getPris();
         }
         System.out.println(retVal);
         return retVal;
@@ -265,7 +265,7 @@ public class Controller {
     
     public static int getKundeID(int tlf, String navn){
         int retVal = 0;
-        for (Kunde kunde : Statistik.getKunder()) {
+        for (Kunde kunde : ArrayListHolder.getKunder()) {
             if(kunde.getNummer() == tlf){
                 kunde.setNavn(navn);
                 return kunde.getId();
@@ -273,7 +273,7 @@ public class Controller {
         }
         Kunde tempKunde = new Kunde(tlf, navn);
         DBCallsKunde.insertToKunde(navn, tlf);
-        Statistik.addKunde(tempKunde);
+        ArrayListHolder.addKunde(tempKunde);
         
         return tempKunde.getId();
     }

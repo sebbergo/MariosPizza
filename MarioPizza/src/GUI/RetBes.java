@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import GUI.Info.OrderInfo;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -15,8 +16,8 @@ import javax.swing.ListSelectionModel;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsOrder;
-import mariopizza.View.Menukort;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
+import mariopizza.View.ArrayListHolder;
 
 /**
  *
@@ -47,6 +48,7 @@ public class RetBes extends javax.swing.JFrame {
         button3 = new java.awt.Button();
         button4 = new java.awt.Button();
         button5 = new java.awt.Button();
+        button6 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -58,7 +60,7 @@ public class RetBes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        button1.setLabel("Load");
+        button1.setLabel("Se order der skal laves");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button1ActionPerformed(evt);
@@ -93,6 +95,13 @@ public class RetBes extends javax.swing.JFrame {
             }
         });
 
+        button6.setLabel("Mere info om orden");
+        button6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +115,8 @@ public class RetBes extends javax.swing.JFrame {
                             .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -119,12 +129,14 @@ public class RetBes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
                 .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jScrollPane1)
@@ -140,8 +152,17 @@ public class RetBes extends javax.swing.JFrame {
 
     public void loadList() {
         DefaultListModel model = new DefaultListModel();
-        for (Bestilling bes : Statistik.getBestillinger()) {
-            model.addElement("ID: " + bes.getId() + " Navn: " + Statistik.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + Statistik.getKunder().get(bes.getKundeId() - 1).getNummer());
+        for (Bestilling bes : ArrayListHolder.getBestillinger()) {
+            model.addElement("ID: " + bes.getId() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
+        }
+
+        jList1.setModel(model);
+    }
+
+    public void loadEfterTid() {
+        DefaultListModel model = new DefaultListModel();
+        for (Bestilling bes : DBCallsOrder.selectAllOrdersOrderedByTime()) {
+            model.addElement("Tid: " + bes.getTid() + " Pizzaer: " + bes.getPizzaerString() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
         }
 
         jList1.setModel(model);
@@ -149,7 +170,7 @@ public class RetBes extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        loadList();
+        loadEfterTid();
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
@@ -163,9 +184,6 @@ public class RetBes extends javax.swing.JFrame {
             Controller.fjernBestilling(id);
         }
         loadList();
-        Statistik.bestillingerEfterTid();
-        Statistik.gemBestillingerCsv();
-
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
@@ -181,7 +199,7 @@ public class RetBes extends javax.swing.JFrame {
         String[] selectedVals = selected.get(0).split(":");
         String tal = selectedVals[1].replaceAll("[^0-9]+", "");
         int id = Integer.parseInt(tal);
-        DBCallsOrder.updateStatus(Statistik.getBestillinger().get(id - 1), "Klar");
+        DBCallsOrder.updateStatus(ArrayListHolder.getBestillinger().get(id - 1), "Klar");
     }//GEN-LAST:event_button4ActionPerformed
 
     private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
@@ -190,8 +208,20 @@ public class RetBes extends javax.swing.JFrame {
         String[] selectedVals = selected.get(0).split(":");
         String tal = selectedVals[1].replaceAll("[^0-9]+", "");
         int id = Integer.parseInt(tal);
-        DBCallsOrder.updateStatus(Statistik.getBestillinger().get(id - 1), "Afhentet");
+        DBCallsOrder.updateStatus(ArrayListHolder.getBestillinger().get(id - 1), "Afhentet");
     }//GEN-LAST:event_button5ActionPerformed
+
+    private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6ActionPerformed
+        // TODO add your handling code here:
+        OrderInfo orderInfo = new OrderInfo();
+        
+        List<String> selected = jList1.getSelectedValuesList();
+        String[] selectedVals = selected.get(0).split(":");
+        String tal = selectedVals[1].replaceAll("[^0-9]+", "");
+        int id = Integer.parseInt(tal);
+        orderInfo.setVals(id);
+        
+    }//GEN-LAST:event_button6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,6 +265,7 @@ public class RetBes extends javax.swing.JFrame {
     private java.awt.Button button3;
     private java.awt.Button button4;
     private java.awt.Button button5;
+    private java.awt.Button button6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

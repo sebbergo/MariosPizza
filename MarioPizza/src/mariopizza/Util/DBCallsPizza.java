@@ -2,14 +2,12 @@ package mariopizza.Util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Model.Pizza;
-import mariopizza.View.Menukort;
+import mariopizza.View.ArrayListHolder;
 
 public class DBCallsPizza {
 
@@ -18,6 +16,7 @@ public class DBCallsPizza {
         Connection MyConnector = null;
         Statement statement = null;
         try {
+            System.out.println("hej");
             MyConnector = DBConnector.getConnector();
             String query = "insert into pizza values (null,'" + navn + "'," + pris + ",'" + fyld + "');";
             statement = MyConnector.createStatement();
@@ -69,7 +68,7 @@ public class DBCallsPizza {
                 String fyld = resultSet.getString("pizza_fyld");
 
                 Pizza tempPizza = new Pizza(navn, pris, fyld);
-                Menukort.addPizza(tempPizza);
+                ArrayListHolder.addPizza(tempPizza);
             }
 
             //lukker

@@ -8,7 +8,7 @@ import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsKunde;
 import mariopizza.Util.DBCallsOrder;
 import mariopizza.Util.DBCallsPizza;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
 
 public class SqlWriter {
 
@@ -22,7 +22,7 @@ public class SqlWriter {
                 line = myScanner.nextLine();
                 String[] pizzaer = line.split(";");
                 String navn = pizzaer[0];
-                int pris = Integer.parseInt(pizzaer[1]);
+                double pris = Double.parseDouble(pizzaer[1]);
                 String[] fyld = new String[pizzaer.length - 2];
                 String retFyld = "";
                 for (int i = 0; i < fyld.length; i++) {
@@ -33,7 +33,7 @@ public class SqlWriter {
 
             } //laver en try catch, for at finde csv filen.
         } catch (Exception e) {
-            System.out.println("Error:mere" + e.toString());
+            System.out.println("Error: " + e.toString());
         }
     }
 

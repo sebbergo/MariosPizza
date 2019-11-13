@@ -6,8 +6,8 @@
 package GUI;
 
 import mariopizza.*;
-import mariopizza.View.Menukort;
-import mariopizza.View.Statistik;
+import mariopizza.View.ArrayListHolder;
+import mariopizza.View.ArrayListHolder;
 
 /**
  *
@@ -209,11 +209,14 @@ public class MainMenu extends javax.swing.JFrame {
         Stat stat = new Stat();
         stat.setVisible(rootPaneCheckingEnabled);
         this.setVisible(!rootPaneCheckingEnabled);
-        
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
+        Advanced advanced = new Advanced();
+        advanced.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
