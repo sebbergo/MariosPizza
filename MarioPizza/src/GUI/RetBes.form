@@ -32,6 +32,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="button1" alignment="1" min="-2" pref="325" max="-2" attributes="0"/>
                           <Component id="button2" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
+                          <Component id="button4" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
+                          <Component id="button5" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -51,7 +53,11 @@
               <Component id="button1" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="button2" min="-2" pref="69" max="-2" attributes="0"/>
-              <EmptySpace pref="508" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="button4" min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="button5" min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace pref="350" max="32767" attributes="0"/>
               <Component id="button3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -92,7 +98,7 @@
     </Component>
     <Component class="java.awt.Button" name="button2">
       <Properties>
-        <Property name="label" type="java.lang.String" value="Slet"/>
+        <Property name="label" type="java.lang.String" value="Slet bestilling"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
@@ -104,6 +110,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.Button" name="button4">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="S&#xe6;t som klar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.Button" name="button5">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="S&#xe6;t som afhentet"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button5ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

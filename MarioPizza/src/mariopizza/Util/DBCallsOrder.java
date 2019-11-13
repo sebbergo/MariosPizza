@@ -14,21 +14,17 @@ import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
 
 public class DBCallsOrder {
-    
-    public static void insertToOrder(String tid, int kundeId, String pizzaer) {
-        
+
+    public static void updateStatus(Bestilling bes, String status) {
+
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
-            
-            double pris = Controller.beregnenOrderPris(pizzaer);
-            
-            pizzaer = pizzaer.substring(0, pizzaer.length() - 1);
-            String query = "insert into bestilling values (null," + kundeId + ",'" + tid + "','" + pizzaer + "'," + pris + ");";
+
+            String query = "update bestilling set `order_status` = '" + status + "'where order_id =" + (bes.getId()) +" ;";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
-            
             statement.close();
             MyConnector.close();
         } catch (SQLException ex) {
@@ -37,29 +33,54 @@ public class DBCallsOrder {
             Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public static void insertToOrder(String tid, int kundeId, String pizzaer) {
+
+        Connection MyConnector = null;
+        Statement statement = null;
+        try {
+            MyConnector = DBConnector.getConnector();
+
+            double pris = Controller.beregnenOrderPris(pizzaer);
+            String status = "Bestilit";
+
+            pizzaer = pizzaer.substring(0, pizzaer.length() - 1);
+            String query = "insert into bestilling values (null," + kundeId + ",'" + tid + "','" + pizzaer + "'," + pris + ",'" + status + "');";
+            statement = MyConnector.createStatement();
+            statement.executeUpdate(query);
+
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static void selectAllOrders() {
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        
+
         try {
             MyConnector = DBConnector.getConnector();
             String query = "SELECT * FROM bestilling";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
-            
+
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
 //            int id = resultSet.getInt("pizza_id");
                 String tid = resultSet.getString("order_tid");
                 int kundeId = resultSet.getInt("kunde_id");
-                
+
                 String pizzaer = resultSet.getString("order_pizzaer");
                 String fyld = resultSet.getString("order_pris");
+                String status = resultSet.getString("order_status");
 
-                Bestilling tempBes = new Bestilling(tid, pizzaer, Statistik.getKunder().get(kundeId - 1).getNavn() , Statistik.getKunder().get(kundeId - 1).getNummer());
+                Bestilling tempBes = new Bestilling(tid, pizzaer, Statistik.getKunder().get(kundeId - 1).getNavn(), Statistik.getKunder().get(kundeId - 1).getNummer(), status);
 
                 Statistik.addBestilling(tempBes);
             }
@@ -74,5 +95,4 @@ public class DBCallsOrder {
             Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

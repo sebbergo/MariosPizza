@@ -15,13 +15,15 @@ public class Bestilling implements Comparable<Object>{
     private ArrayList<Pizza> pizza = new ArrayList();
     private String pizzaerString = "";
     private int id;
+    private String status = "";
     private static int counter;
 
-    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
+    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status) {
         this.tid = tid;
         this.id = ++counter;
         this.kundeId = Controller.getKundeID(tlfnr, navn);
         this.pizzaerString = pizzaNummer;
+        this.status = status;
 
 //        if (Statistik.checkKunde(tlfnr) == null) {
 //            kunde = new Kunde(tlfnr, navn);

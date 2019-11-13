@@ -135,25 +135,25 @@ public class Statistik {
     }
 
     //Metode der loader statistikken
-    public static void StatLoad() {
-        File file = new File(filename);
-        try {
-            Scanner myScanner = new Scanner(file);
-            String line = "";
-            while (myScanner.hasNextLine()) {
-                line = myScanner.nextLine();
-                String[] bes = line.split(";");
-                String tid = bes[0];
-                int nummer = Integer.parseInt(bes[2]);
-
-                String pizzaer = "";
-                for (int i = 3; i < bes.length; i++) {
-                    pizzaer += bes[i] + ",";
-                }
-                Controller.tilføjBestilling(tid, pizzaer, bes[1], nummer);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
-        }
-    }
+//    public static void StatLoad() {
+//        File file = new File(filename);
+//        try {
+//            Scanner myScanner = new Scanner(file);
+//            String line = "";
+//            while (myScanner.hasNextLine()) {
+//                line = myScanner.nextLine();
+//                String[] bes = line.split(";");
+//                String tid = bes[0];
+//                int nummer = Integer.parseInt(bes[2]);
+//
+//                String pizzaer = "";
+//                for (int i = 3; i < bes.length; i++) {
+//                    pizzaer += bes[i] + ",";
+//                }
+//                Controller.tilføjBestilling(tid, pizzaer, bes[1], nummer);
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error: " + e.toString());
+//        }
+//    }
 }

@@ -69,7 +69,7 @@ public class Controller {
                         break;
                     }
 
-                    tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
+//                    tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
 //                    Statistik.printBestilling();
                     Statistik.gemBestillingerCsv();
                     Statistik.bestillingerEfterTid();
@@ -208,16 +208,16 @@ public class Controller {
 
     //Metode til at tilføje en bestilling og adde den direkte til arrayliste
     //med bestillinger og statistikken
-    public static void tilføjBestilling(String tid, String pizzaNummer, String navn, int tlfnr) {
-        Bestilling bes;
-        if (tlfnr == 0) {
-            bes = new Bestilling(tid, pizzaNummer, navn, 0);
-        } else {
-            bes = new Bestilling(tid, pizzaNummer, navn, tlfnr);
-        }
-        Statistik.addBestilling(bes);
-        Statistik.addBestillingStat(bes);
-    }
+//    public static void tilføjBestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status) {
+//        Bestilling bes;
+//        if (tlfnr == 0) {
+//            bes = new Bestilling(tid, pizzaNummer, navn, 0);
+//        } else {
+//            bes = new Bestilling(tid, pizzaNummer, navn, tlfnr, status);
+//        }
+//        Statistik.addBestilling(bes);
+//        Statistik.addBestillingStat(bes);
+//    }
 
     //Fjern bestilling fra bestillingsliste array, hvis bestillingen findes
     public static void fjernBestilling(int id) {

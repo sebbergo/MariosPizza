@@ -6,7 +6,7 @@
 package GUI;
 
 import mariopizza.Controllers.Controller;
-import static mariopizza.Controllers.Controller.tilføjBestilling;
+import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsOrder;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
@@ -210,7 +210,8 @@ public class NyBestilling extends javax.swing.JFrame {
                     int tlfnr = Integer.parseInt(jTextField5.getText());
                     
                     DBCallsOrder.insertToOrder(tid, Controller.getKundeID(tlfnr, navn), pizzaNummere);
-                    tilføjBestilling(tid, pizzaNummere, navn, tlfnr);
+                    Bestilling bes = new Bestilling(tid, pizzaNummere, navn, tlfnr, "Bestilte");
+                    Statistik.addBestilling(bes);
                     goBack();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -248,8 +249,6 @@ public class NyBestilling extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Menukort.menukortLoad();
-                Statistik.StatLoad();
                 new NyBestilling().setVisible(true);
             }
         });
