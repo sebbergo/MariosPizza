@@ -7,7 +7,7 @@ package GUI;
 
 import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsPizza;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 /**
  *

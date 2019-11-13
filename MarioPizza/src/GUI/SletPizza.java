@@ -9,9 +9,8 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
-
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 /**
  *

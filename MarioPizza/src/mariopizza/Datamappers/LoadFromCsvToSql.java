@@ -3,7 +3,7 @@ package mariopizza.Datamappers;
 import java.io.File;
 import java.util.Scanner;
 import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 public class LoadFromCsvToSql {
 

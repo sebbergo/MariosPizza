@@ -1,4 +1,4 @@
-package mariopizza.View;
+package mariopizza.Util;
 //@author Lukas
 
 import mariopizza.Controllers.Controller;
@@ -37,6 +37,26 @@ public class ArrayListHolder {
         return null;
     }
 
+    //Vi checker at det er den rigtige pizza vha. dens id, fordi vi ikke
+    //kan oprette objekter at referere til
+    public static Bestilling bestillingChecker(int id) {
+        for (Bestilling bes : bestillinger) {
+            if (bes.getId() == id) {
+                return bes;
+            }
+        }
+        return null;
+    }
+
+    public static Pizza pizzaChecker(int nummer) {
+        for (Pizza pizza : allePizzaer) {
+            if (pizza.getNummer() == nummer) {
+                return pizza;
+            }
+        }
+        return null;
+    }
+
     //Fjerner og tilføjer bestillinger
     public static void addBestilling(Bestilling bestilling) {
         bestillinger.add(bestilling);
@@ -50,33 +70,10 @@ public class ArrayListHolder {
     public static void addBestillingStat(Bestilling bestilling) {
         bestillingerStat.add(bestilling);
     }
-    
+
     //sortere vores bestillinger efter tid vha. vores compareTo metode i Bestilling.java
     public static void bestillingerEfterTid() {
         Collections.sort(bestillinger);
-    }
-
-    //Vi checker at det er den rigtige pizza vha. dens id, fordi vi ikke
-    //kan oprette objekter at referere til
-    public static Bestilling bestillingChecker(int id) {
-        for (Bestilling bes : bestillinger) {
-            if (bes.getId() == id) {
-                return bes;
-            }
-        }
-        return null;
-    }
-
-    //Metoden går ind og printer alle de pizzaer der er tilføjet til
-    //bestillinger i statistikken
-    public static int[] printAntalKøbtePizzaer() {
-        int[] antalPizzaer = new int[allePizzaer.size()];
-        for (Bestilling bestilling : bestillinger) {
-            for (Pizza piz : bestilling.getPizza()) {
-                antalPizzaer[piz.getNummer() - 1]++;
-            }
-        }
-        return antalPizzaer;
     }
 
     public static void addPizza(Pizza pizza) {
@@ -87,26 +84,11 @@ public class ArrayListHolder {
         allePizzaer.remove(pizzaChecker(id));
     }
 
-    public static void printPizza() {
-        for (Pizza pizza : allePizzaer) {
-            System.out.println(pizza.getNummer() + ": " + pizza.getNavn());
-        }
-    }
-
-    public static Pizza pizzaChecker(int nummer) {
-        for (Pizza pizza : allePizzaer) {
-            if (pizza.getNummer() == nummer) {
-                return pizza;
-            }
-        }
-        return null;
-    }
-
     public static ArrayList<Pizza> getAllePizzaer() {
         return allePizzaer;
     }
-    
-        // metode der tilføjer kunde til vores kunder-arraylist
+
+    // metode der tilføjer kunde til vores kunder-arraylist
     public static void addKunde(Kunde kunde) {
         kunder.add(kunde);
     }

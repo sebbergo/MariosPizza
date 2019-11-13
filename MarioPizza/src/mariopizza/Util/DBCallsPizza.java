@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
 
 public class DBCallsPizza {
 

@@ -1,11 +1,15 @@
 package mariopizza.Model;
 //@author Marc
+
 import java.util.ArrayList;
 import mariopizza.Controllers.Controller;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
+public class Bestilling implements Comparable<Object> {
 
-public class Bestilling implements Comparable<Object>{
+    public static void setCounter(int counter) {
+        Bestilling.counter = counter;
+    }
 
     private String tid;
     private int kundeId;
@@ -32,8 +36,25 @@ public class Bestilling implements Comparable<Object>{
             this.pris += ArrayListHolder.pizzaChecker(pizzaerNummer[i]).getPris();
         }
     }
-    
-    public String returnPizzaer(){
+
+    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status, int id) {
+        this.tid = tid;
+        this.id = id;
+        this.kundeId = Controller.getKundeID(tlfnr, navn);
+        this.pizzaerString = pizzaNummer;
+        this.status = status;
+
+        String[] pizzaer = pizzaNummer.split(",");
+        int[] pizzaerNummer = new int[pizzaer.length];
+
+        for (int i = 0; i < pizzaer.length; i++) {
+            pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
+            pizza.add(ArrayListHolder.pizzaChecker(pizzaerNummer[i]));
+            this.pris += ArrayListHolder.pizzaChecker(pizzaerNummer[i]).getPris();
+        }
+    }
+
+    public String returnPizzaer() {
         String retVal = "";
         for (Pizza piz : pizza) {
             retVal += piz.getNavn() + ", ";
@@ -41,7 +62,7 @@ public class Bestilling implements Comparable<Object>{
         retVal = retVal.substring(0, retVal.length() - 1);
         return retVal;
     }
-    
+
     public String printBes() {
         String retVal = "Pizzatype: ";
         for (Pizza p : pizza) {
@@ -69,7 +90,7 @@ public class Bestilling implements Comparable<Object>{
     public void setTid(String tid) {
         this.tid = tid;
     }
-    
+
     public String getPizzaerString() {
         return pizzaerString;
     }
@@ -82,7 +103,6 @@ public class Bestilling implements Comparable<Object>{
         return pris;
     }
 
-
     @Override
     public int compareTo(Object o) {
         Bestilling other = (Bestilling) o;
@@ -90,15 +110,15 @@ public class Bestilling implements Comparable<Object>{
         int thisMin = Integer.parseInt(this.tid.split(":")[1]);
         int otherHour = Integer.parseInt(other.getTid().split(":")[0]);
         int otherMin = Integer.parseInt(other.getTid().split(":")[1]);
-        
-        if(thisHour > otherHour){
+
+        if (thisHour > otherHour) {
             return 1;
-        } else if (thisHour < otherHour){
+        } else if (thisHour < otherHour) {
             return -1;
         } else {
-            if(thisMin > otherMin){
+            if (thisMin > otherMin) {
                 return 1;
-            } else if (thisMin < otherMin){
+            } else if (thisMin < otherMin) {
                 return -1;
             } else {
                 return 0;
@@ -107,5 +127,3 @@ public class Bestilling implements Comparable<Object>{
     }
 
 }
-
-

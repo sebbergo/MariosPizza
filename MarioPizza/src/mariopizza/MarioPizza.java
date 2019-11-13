@@ -17,8 +17,8 @@ import mariopizza.Util.DBCallsKunde;
 import mariopizza.Util.DBCallsOrder;
 import mariopizza.Util.DBCallsPizza;
 import mariopizza.Util.DBConnector;
-import mariopizza.View.ArrayListHolder;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 
 public class MarioPizza {

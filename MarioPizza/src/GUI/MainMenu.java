@@ -6,8 +6,8 @@
 package GUI;
 
 import mariopizza.*;
-import mariopizza.View.ArrayListHolder;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 /**
  *

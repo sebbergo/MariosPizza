@@ -9,7 +9,7 @@ import GUI.MainMenu;
 import GUI.MainMenu;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 import mariopizza.View.StatistikKunde;
 
 /**

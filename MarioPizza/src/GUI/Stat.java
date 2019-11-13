@@ -12,9 +12,9 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 import mariopizza.View.StatFunctions;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 import mariopizza.View.StatistikKunde;
 
 /**
@@ -142,8 +142,8 @@ public class Stat extends javax.swing.JFrame {
 
     public void loadAntalPizzaer() {
         DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < ArrayListHolder.printAntalKøbtePizzaer().length; i++) {
-            model.addElement("Nummer: " + (i + 1) + " Solgte: " + ArrayListHolder.printAntalKøbtePizzaer()[i] + " Samlet beløb: " + (ArrayListHolder.printAntalKøbtePizzaer()[i] * ArrayListHolder.pizzaChecker(i + 1).getPris()));
+        for (int i = 0; i < StatFunctions.getAntalKøbtePizzaer().length; i++) {
+            model.addElement("Nummer: " + (i + 1) + " Solgte: " + StatFunctions.getAntalKøbtePizzaer()[i] + " Samlet beløb: " + (StatFunctions.getAntalKøbtePizzaer()[i] * ArrayListHolder.pizzaChecker(i + 1).getPris()));
         }
 
         jList1.setModel(model);

@@ -1,5 +1,6 @@
 package mariopizza.View;
 
+import mariopizza.Util.ArrayListHolder;
 import java.util.ArrayList;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Pizza;

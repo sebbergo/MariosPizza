@@ -7,7 +7,7 @@ package GUI;
 
 import javax.swing.DefaultListModel;
 import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 /**
  *

@@ -6,18 +6,16 @@
 package GUI;
 
 import GUI.Info.OrderInfo;
-import java.awt.Dimension;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsOrder;
-import mariopizza.View.ArrayListHolder;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
+import java.awt.Component;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
+
 
 /**
  *
@@ -155,14 +153,14 @@ public class RetBes extends javax.swing.JFrame {
         for (Bestilling bes : ArrayListHolder.getBestillinger()) {
             model.addElement("ID: " + bes.getId() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
         }
-
+        
         jList1.setModel(model);
     }
 
     public void loadEfterTid() {
         DefaultListModel model = new DefaultListModel();
         for (Bestilling bes : DBCallsOrder.selectAllOrdersOrderedByTime()) {
-            model.addElement("Tid: " + bes.getTid() + " Pizzaer: " + bes.getPizzaerString() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
+            model.addElement("ID: " + bes.getId() + " Tid: " + bes.getTid() + " Pizzaer: " + bes.getPizzaerString() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
         }
 
         jList1.setModel(model);
@@ -178,10 +176,13 @@ public class RetBes extends javax.swing.JFrame {
         List<String> selected = jList1.getSelectedValuesList();
 
         for (int i = 0; i < selected.size(); i++) {
-            String tal = selected.get(i).replaceAll("[^0-9]+", "");
+            String[] selectedVals = selected.get(i).split(":");
+            String tal = selectedVals[1].replaceAll("[^0-9]+", "");
             int id = Integer.parseInt(tal);
+            
             System.out.println(id);
-            Controller.fjernBestilling(id);
+            ArrayListHolder.removeBestilling(ArrayListHolder.bestillingChecker(id));
+            DBCallsOrder.deleteFromPizza(id);
         }
         loadList();
     }//GEN-LAST:event_button2ActionPerformed
@@ -214,13 +215,14 @@ public class RetBes extends javax.swing.JFrame {
     private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6ActionPerformed
         // TODO add your handling code here:
         OrderInfo orderInfo = new OrderInfo();
-        
+
         List<String> selected = jList1.getSelectedValuesList();
         String[] selectedVals = selected.get(0).split(":");
         String tal = selectedVals[1].replaceAll("[^0-9]+", "");
         int id = Integer.parseInt(tal);
         orderInfo.setVals(id);
-        
+        orderInfo.setVisible(rootPaneCheckingEnabled);
+        this.setVisible(!rootPaneCheckingEnabled);
     }//GEN-LAST:event_button6ActionPerformed
 
     /**

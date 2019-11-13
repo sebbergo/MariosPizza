@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Kunde;
 import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 public class SaveToCsv {
     

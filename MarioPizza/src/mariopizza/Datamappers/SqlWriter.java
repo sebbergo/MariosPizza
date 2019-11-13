@@ -8,7 +8,7 @@ import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsKunde;
 import mariopizza.Util.DBCallsOrder;
 import mariopizza.Util.DBCallsPizza;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 public class SqlWriter {
 

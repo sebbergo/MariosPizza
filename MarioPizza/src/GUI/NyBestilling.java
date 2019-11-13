@@ -8,8 +8,8 @@ package GUI;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
 import mariopizza.Util.DBCallsOrder;
-import mariopizza.View.ArrayListHolder;
-import mariopizza.View.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
+import mariopizza.Util.ArrayListHolder;
 
 /**
  *

@@ -10,11 +10,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
-import mariopizza.Model.Pizza;
-import mariopizza.View.ArrayListHolder;
-import mariopizza.View.ArrayListHolder;
 
 public class DBCallsOrder {
+
+    public static void deleteFromPizza(int id) {
+        Connection MyConnector = null;
+        Statement statement = null;
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "delete from bestilling where order_id=" + id + ";";
+            statement = MyConnector.createStatement();
+            statement.executeUpdate(query);
+
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void updateStatus(Bestilling bes, String status) {
 
@@ -23,7 +38,7 @@ public class DBCallsOrder {
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "update bestilling set `order_status` = '" + status + "'where order_id =" + (bes.getId()) +" ;";
+            String query = "update bestilling set `order_status` = '" + status + "'where order_id =" + (bes.getId()) + " ;";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
             statement.close();
@@ -73,7 +88,7 @@ public class DBCallsOrder {
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
-//            int id = resultSet.getInt("pizza_id");
+                int id = resultSet.getInt("order_id");
                 String tid = resultSet.getString("order_tid");
                 int kundeId = resultSet.getInt("kunde_id");
 
@@ -81,7 +96,7 @@ public class DBCallsOrder {
                 String fyld = resultSet.getString("order_pris");
                 String status = resultSet.getString("order_status");
 
-                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status);
+                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status, id);
 
                 ArrayListHolder.addBestilling(tempBes);
             }
@@ -96,12 +111,13 @@ public class DBCallsOrder {
             Logger.getLogger(DBCallsPizza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static ArrayList<Bestilling> selectAllOrdersOrderedByTime() {
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
         ArrayList<Bestilling> bestillinger = new ArrayList();
+        Bestilling.setCounter(0);
 
         try {
             MyConnector = DBConnector.getConnector();
@@ -112,7 +128,7 @@ public class DBCallsOrder {
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
-//            int id = resultSet.getInt("pizza_id");
+                int id = resultSet.getInt("order_id");
                 String tid = resultSet.getString("order_tid");
                 int kundeId = resultSet.getInt("kunde_id");
 
@@ -120,7 +136,7 @@ public class DBCallsOrder {
                 String fyld = resultSet.getString("order_pris");
                 String status = resultSet.getString("order_status");
 
-                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status);
+                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status, id);
 
                 bestillinger.add(tempBes);
             }

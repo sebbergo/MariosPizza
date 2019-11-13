@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mariopizza.Model.Bestilling;
 import mariopizza.Model.Kunde;
-import mariopizza.View.ArrayListHolder;
 
 public class DBCallsKunde {
 
