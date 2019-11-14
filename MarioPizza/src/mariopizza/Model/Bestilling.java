@@ -1,7 +1,5 @@
 package mariopizza.Model;
-//@author Marc
-import mariopizza.Model.Kunde;
-import mariopizza.Model.Pizza;
+
 import java.util.ArrayList;
 import mariopizza.View.Menukort;
 import mariopizza.View.Statistik;
@@ -10,7 +8,6 @@ public class Bestilling implements Comparable<Object>{
 
     private String tid;
     private Kunde kunde;
-    private double pris;
     private ArrayList<Pizza> pizza = new ArrayList();
     
     private int id;
@@ -32,7 +29,7 @@ public class Bestilling implements Comparable<Object>{
         for (int i = 0; i < pizzaer.length; i++) {
             pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
-            this.pris += Menukort.pizzaChecker(pizzaerNummer[i]).getPris();
+
         }
     }
 
@@ -48,6 +45,8 @@ public class Bestilling implements Comparable<Object>{
             pizzaerNummer[i] = Integer.parseInt(pizzaer[i]);
             pizza.add(Menukort.pizzaChecker(pizzaerNummer[i]));
         }
+        
+        
     }
 
     public String printBes() {

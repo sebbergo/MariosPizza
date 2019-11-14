@@ -1,15 +1,15 @@
 package mariopizza.View;
-//@author Marcus
+
 import mariopizza.Model.Pizza;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mariopizza.DataMappers.DBMenukort;
 
 public class Menukort {
 
@@ -40,16 +40,17 @@ public class Menukort {
         //sletter en linje, ved at fjerne en linej og printe csv igen uden slettede linje
     public static void sletLine(int line) {
         removePizza(line);
-        gemCsv();
+        gemPizzaCsv();
     }
 
-    public static void addPizzaToCsv(String navn, int pris, String fyld) {
+    public static void addPizzaToCsv(String navn, int pris, String fyld) throws ClassNotFoundException, SQLException {
         Pizza pizza = new Pizza(navn, pris, fyld);
         allePizzaer.add(pizza);
-
+        
+        DBMenukort.menukortTilSQL();
     }
 
-    public static void gemCsv() {
+    public static void gemPizzaCsv() {
         File file = new File(filename);
         FileWriter fw;
         try {

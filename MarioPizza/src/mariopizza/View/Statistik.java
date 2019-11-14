@@ -1,42 +1,45 @@
 package mariopizza.View;
-//@author Lukas
-import mariopizza.Controller.Controller;
-import mariopizza.Model.Bestilling;
-import mariopizza.Model.Kunde;
+
 import mariopizza.Model.Pizza;
+import mariopizza.Model.Kunde;
+import mariopizza.Model.Bestilling;
+import mariopizza.Controllers.Controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static mariopizza.View.Menukort.makePizza;
 
 public class Statistik {
+
     //path til vores csv-fil der holder på bestillinger
     private static String filename = "Data/Bestillinger.csv";
+
     //oprettelse af arraylists, til statistik, bestillinger og kunder
     private static ArrayList<Bestilling> bestillingerStat = new ArrayList();
     private static ArrayList<Bestilling> bestillinger = new ArrayList();
     private static ArrayList<Kunde> kunder = new ArrayList();
+
     // metode der tilføjer kunde til vores kunder-arraylist
     public void addKunde(Kunde kunde) {
         kunder.add(kunde);
     }
+
     //metode der checker om en given kundes telefonnummer allerede eksistere under 
     //andet navn, og retunere nyt navn til samme nummer
     public static Kunde checkKunde(int tlfnr) {
         for (Kunde kunde : kunder) {
-            if (kunde.getNummer() == tlfnr) {
+            if (kunde.getTlfNummer() == tlfnr) {
                 return kunde;
             }
         }
         return null;
     }
+
     //Fjerner og tilføjer bestillinger
     public static void addBestilling(Bestilling bestilling) {
         bestillinger.add(bestilling);
@@ -45,12 +48,14 @@ public class Statistik {
     public static void removeBestilling(Bestilling bestilling) {
         bestillinger.remove(bestilling);
     }
+
     //printer bestillinger
     public static void printBestilling() {
         for (Bestilling bestilling : bestillinger) {
-            System.out.println("ID: " + bestilling.getId() + " | " + bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
+            System.out.println(bestilling.getTid() + " , " + bestilling.printBes() + " " + bestilling.getKunde().getNavn());
         }
     }
+
     //fjerner/tilføjer bestillinger til statistik
     public static void addBestillingStat(Bestilling bestilling) {
         bestillingerStat.add(bestilling);
@@ -62,6 +67,7 @@ public class Statistik {
 
         }
     }
+
     //sortere vores bestillinger efter tid vha. vores compareTo metode i Bestilling.java
     public static void bestillingerEfterTid() {
         Collections.sort(bestillinger);
@@ -82,19 +88,19 @@ public class Statistik {
     //bestillinger i statistikken
     public static void printAntalKøbtePizzaer() {
         int[] antalPizzaer = new int[Menukort.getAllePizzaer().size()];
-        for (Bestilling bestilling : bestillingerStat) {
+        for (Bestilling bestilling : bestillinger) {
             for (Pizza piz : bestilling.getPizza()) {
                 antalPizzaer[piz.getNummer() - 1]++;
             }
         }
         for (int i = 0; i < antalPizzaer.length; i++) {
-            System.out.println("Pizza nummer: " + i + ": "+antalPizzaer[i]);
+            System.out.println("Der er blevet købt " + antalPizzaer[i] + " af nummer" + (i + 1));
         }
     }
 
     //Metode der hjælper med at gemme pizzaer i vores csv fil efter der bliver
     //ændret i den
-    public static void gemBestillingerCsv() {
+    public static void gemBestillingerCsv() throws ClassNotFoundException, SQLException {
         File file = new File(filename);
         FileWriter fw;
         try {
@@ -102,7 +108,7 @@ public class Statistik {
             for (Bestilling bes : bestillinger) {
                 fw.write(bes.getTid() + ";");
                 fw.write(bes.getKunde().getNavn() + ";");
-                fw.write(bes.getKunde().getNummer() + ";");
+                fw.write(bes.getKunde().getTlfNummer() + ";");
 
                 for (Pizza piz : bes.getPizza()) {
                     fw.write(piz.getNummer() + ";");

@@ -1,12 +1,12 @@
 package mariopizza.Model;
-//@author Marcus
+
 public class Kunde {
 
     int tlfNum;
     String navn;
 
-    public Kunde(int nummer, String navn) {
-        this.tlfNum = nummer;
+    public Kunde(int tlfNummer, String navn) {
+        this.tlfNum = tlfNummer;
         this.navn = navn;
     }
 
@@ -14,12 +14,12 @@ public class Kunde {
         this.navn = navn;
     }
 
-    public int getNummer() {
+    public int getTlfNummer() {
         return tlfNum;
     }
 
-    public void setNummer(int nummer) {
-        this.tlfNum = nummer;
+    public void setTlfNummer(int tlfNummer) {
+        this.tlfNum = tlfNummer;
     }
 
     public String getNavn() {
