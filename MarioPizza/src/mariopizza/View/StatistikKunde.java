@@ -10,18 +10,17 @@ public class StatistikKunde {
     public static Pizza getKundeFavPiz(int id) {
         Pizza tempPizza = null;
         int[] antal = new int[ArrayListHolder.getAllePizzaer().size()];
-        ArrayList<Pizza> kundensPizzaer = ArrayListHolder.getBestillinger().get(id - 1).getPizza();
+        ArrayList<Pizza> kundensPizzaer = ArrayListHolder.getBestillinger().get(id).getPizza();
         int most = 0;
         for (Pizza pizza : kundensPizzaer) {
-            antal[pizza.getNummer() - 1]++;
+            antal[pizza.getNummer()]++;
+            if(antal[pizza.getNummer()] >= antal[most]) {
+                System.out.println(most);
+                most = pizza.getNummer();
+            }
         }
-//        for (int i = 0; i < antal.length; i++) {
-//            System.out.println(antal[i]);
-//            
-//        }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        return ArrayListHolder.getAllePizzaer().get(most);
+        return ArrayListHolder.getAllePizzaer().get(most - 1);
     }
 
     public static ArrayList<Pizza>[] pizzaerKøbAfKunde() {

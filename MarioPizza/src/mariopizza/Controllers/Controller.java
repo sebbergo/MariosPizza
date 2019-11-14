@@ -27,5 +27,30 @@ public class Controller {
         return retVal;
     }
     
+    public static boolean checkIfStirngParseToInt(String string) {
+        try {
+            Integer.parseInt(string);
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+        public static boolean checkIfStringOnlyContainsPizza(String string) {
+        try {
+            String[] pizzaer = string.split(",");
+            for(int i = 0; i < pizzaer.length; i++) {
+                if(Integer.parseInt(pizzaer[i]) > ArrayListHolder.getAllePizzaer().size() + 1){
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
 
 }

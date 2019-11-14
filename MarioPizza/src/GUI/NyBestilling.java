@@ -206,26 +206,53 @@ public class NyBestilling extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String tid = jTextField1.getText() + ":" + jTextField2.getText();
-        String pizzaNummere = jTextField3.getText();
-        String navn = jTextField4.getText();
-        int tlfnr = Integer.parseInt(jTextField5.getText());
-        
-        Kunde tempKunde = null;
-        if (tlfnr == 0) {
-            tempKunde = new Kunde(navn);
-            ArrayListHolder.addKunde(tempKunde);
-        } else if (ArrayListHolder.checkKundeTlf(tlfnr) != null) {
-            ArrayListHolder.checkKundeTlf(tlfnr).setNavn(navn);
+        String[] text = new String[4];
+        boolean fejl = false;
+
+        if (Controller.checkIfStirngParseToInt(jTextField5.getText())) {
         } else {
-            tempKunde = new Kunde(tlfnr, navn);
-            ArrayListHolder.addKunde(tempKunde);
+            fejl = true;
+            text[2] = "Telefon nummer skal være et tal";
         }
-        DBCallsKunde.insertToKunde(navn, tlfnr);
-        Bestilling bes = new Bestilling(tid, pizzaNummere, navn, tlfnr, "Bestilte", tempKunde.getId());
-        DBCallsOrder.insertToOrder(tid, tempKunde.getId(), pizzaNummere);
-        ArrayListHolder.addBestilling(bes);
-        goBack();
+        if (Controller.checkIfStirngParseToInt(jTextField2.getText())) {
+        } else {
+            fejl = true;
+            text[1] = "Minuter skal være et tal";
+        }
+        if (Controller.checkIfStirngParseToInt(jTextField1.getText())) {
+        } else {
+            fejl = true;
+            text[0] = "Timer skal være et tal";
+        }
+        if (!Controller.checkIfStringOnlyContainsPizza(jTextField3.getText())) {
+            fejl = true;
+            text[3] = "Pizza kan ikke findes";
+        }
+        if (fejl) {
+            WrongInput wrong = new WrongInput();
+            wrong.setText(text[0], text[1], text[2], text[3]);
+            wrong.setVisible(true);
+        } else {
+            String tid = jTextField1.getText() + ":" + jTextField2.getText();
+            String pizzaNummere = jTextField3.getText();
+            String navn = jTextField4.getText();
+            int tlfnr = Integer.parseInt(jTextField5.getText());
+            Kunde tempKunde = null;
+            if (tlfnr == 0) {
+                tempKunde = new Kunde(navn);
+                ArrayListHolder.addKunde(tempKunde);
+            } else if (ArrayListHolder.checkKundeTlf(tlfnr) != null) {
+                ArrayListHolder.checkKundeTlf(tlfnr).setNavn(navn);
+            } else {
+                tempKunde = new Kunde(tlfnr, navn);
+                ArrayListHolder.addKunde(tempKunde);
+            }
+            DBCallsKunde.insertToKunde(navn, tlfnr);
+            Bestilling bes = new Bestilling(tid, pizzaNummere, navn, tlfnr, "Bestilte", tempKunde.getId());
+            DBCallsOrder.insertToOrder(tid, tempKunde.getId(), pizzaNummere);
+            ArrayListHolder.addBestilling(bes);
+            goBack();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -246,16 +273,24 @@ public class NyBestilling extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NyBestilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyBestilling.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NyBestilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyBestilling.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NyBestilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyBestilling.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NyBestilling.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NyBestilling.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
