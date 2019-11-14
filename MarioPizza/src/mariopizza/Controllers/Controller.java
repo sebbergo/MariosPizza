@@ -37,6 +37,16 @@ public class Controller {
         return true;
     }
     
+        public static boolean checkIfStirngParseToDouble(String string) {
+        try {
+            Double.parseDouble(string);
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
         public static boolean checkIfStringOnlyContainsPizza(String string) {
         try {
             String[] pizzaer = string.split(",");

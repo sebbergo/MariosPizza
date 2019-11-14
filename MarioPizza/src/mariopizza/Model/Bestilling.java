@@ -11,6 +11,14 @@ public class Bestilling implements Comparable<Object> {
         Bestilling.counter = counter;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private String tid;
     private int kundeId;
     private double pris = 0.0;

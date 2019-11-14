@@ -16,7 +16,6 @@ import mariopizza.Util.ArrayListHolder;
 import java.awt.Component;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
-
 /**
  *
  * @author marcg
@@ -142,25 +141,34 @@ public class RetBes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    boolean efterTid =false;
     private void jList1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jList1ComponentShown
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jList1ComponentShown
-
+    
+    public void load(){
+        if(efterTid){
+            loadEfterTid();
+        } else 
+            loadList();
+    }
+    
     public void loadList() {
         DefaultListModel model = new DefaultListModel();
         for (Bestilling bes : ArrayListHolder.getBestillinger()) {
             model.addElement("ID: " + bes.getId() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
         }
-        
+
         jList1.setModel(model);
     }
 
     public void loadEfterTid() {
         DefaultListModel model = new DefaultListModel();
         for (Bestilling bes : DBCallsOrder.selectAllOrdersOrderedByTime()) {
-            model.addElement("ID: " + bes.getId() + " Tid: " + bes.getTid() + " Pizzaer: " + bes.getPizzaerString() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
+            if (bes.getStatus().contains("Bestilit")) {
+                model.addElement("ID: " + bes.getId() + " Tid: " + bes.getTid() + " Pizzaer: " + bes.getPizzaerString() + " Navn: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(bes.getKundeId() - 1).getNummer());
+            }
         }
 
         jList1.setModel(model);
@@ -168,7 +176,8 @@ public class RetBes extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        loadEfterTid();
+        efterTid = true;
+        load();
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
@@ -183,7 +192,7 @@ public class RetBes extends javax.swing.JFrame {
             ArrayListHolder.removeBestilling(ArrayListHolder.bestillingChecker(id));
             DBCallsOrder.deleteFromPizza(id);
         }
-        loadList();
+        load();
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
@@ -200,6 +209,7 @@ public class RetBes extends javax.swing.JFrame {
         String tal = selectedVals[1].replaceAll("[^0-9]+", "");
         int id = Integer.parseInt(tal);
         DBCallsOrder.updateStatus(ArrayListHolder.getBestillinger().get(id - 1), "Klar");
+        load();
     }//GEN-LAST:event_button4ActionPerformed
 
     private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
@@ -209,6 +219,7 @@ public class RetBes extends javax.swing.JFrame {
         String tal = selectedVals[1].replaceAll("[^0-9]+", "");
         int id = Integer.parseInt(tal);
         DBCallsOrder.updateStatus(ArrayListHolder.getBestillinger().get(id - 1), "Afhentet");
+        load();
     }//GEN-LAST:event_button5ActionPerformed
 
     private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6ActionPerformed

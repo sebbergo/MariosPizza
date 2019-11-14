@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import mariopizza.Controllers.Controller;
 import mariopizza.Model.Pizza;
 import mariopizza.Util.DBCallsPizza;
 import mariopizza.Util.ArrayListHolder;
@@ -43,6 +44,7 @@ public class NyPizza extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(700, 700));
 
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -56,6 +58,7 @@ public class NyPizza extends javax.swing.JFrame {
             }
         });
 
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -145,15 +148,27 @@ public class NyPizza extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        String pizzaNavn = jTextField2.getText();
-        double pizzaPris = Double.parseDouble(jTextField3.getText());
-        String fyld = jTextField1.getText();
-        
-        Pizza tempPizza = new Pizza(pizzaNavn, pizzaPris, fyld);
-        
-        ArrayListHolder.addPizza(tempPizza);
-        DBCallsPizza.insertToPizza(pizzaNavn, pizzaPris, fyld);
-        goBack();
+        boolean fejl = false;
+        String[] text = new String[4];
+        if (!Controller.checkIfStirngParseToDouble(jTextField3.getText())) {
+            fejl = true;
+            text[0] = "Prisen skal være et tal";
+        }
+        if (fejl) {
+            WrongInput wrong = new WrongInput();
+            wrong.setText(text[0], text[1], text[2], text[3]);
+            wrong.setVisible(true);
+        } else {
+            String pizzaNavn = jTextField2.getText();
+            double pizzaPris = Double.parseDouble(jTextField3.getText());
+            String fyld = jTextField1.getText();
+
+            Pizza tempPizza = new Pizza(pizzaNavn, pizzaPris, fyld);
+
+            ArrayListHolder.addPizza(tempPizza);
+            DBCallsPizza.insertToPizza(pizzaNavn, pizzaPris, fyld);
+            goBack();
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

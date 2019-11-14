@@ -68,7 +68,7 @@ public class Stat extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Se Antal solgte");
+        jButton3.setText("Se kunde statistik");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class Stat extends javax.swing.JFrame {
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
             boolean adjust = listSelectionEvent.getValueIsAdjusting();
 
-            if (!adjust) {
+            if (kunde == true && !adjust) {
                 JList list = (JList) listSelectionEvent.getSource();
 
                 List<String> selected = jList1.getSelectedValuesList();
@@ -128,7 +128,7 @@ public class Stat extends javax.swing.JFrame {
         }
 
         ;
-
+    private boolean kunde = false;
     private void seMere(int id) {
             KundeInfo kundeInfo = new KundeInfo();
             kundeInfo.setId(id);
@@ -175,6 +175,7 @@ public class Stat extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        kunde = true;
         loadAntalPrKunde();
     }//GEN-LAST:event_jButton3ActionPerformed
 
