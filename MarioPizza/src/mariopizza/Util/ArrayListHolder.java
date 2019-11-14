@@ -28,7 +28,7 @@ public class ArrayListHolder {
 
     //metode der checker om en given kundes telefonnummer allerede eksistere under
     //andet navn, og retunere nyt navn til samme nummer
-    public static Kunde checkKunde(int tlfnr) {
+    public static Kunde checkKundeTlf(int tlfnr) {
         for (Kunde kunde : kunder) {
             if (kunde.getNummer() == tlfnr) {
                 return kunde;

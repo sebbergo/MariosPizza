@@ -9,15 +9,17 @@ public class StatistikKunde {
 
     public static Pizza getKundeFavPiz(int id) {
         Pizza tempPizza = null;
-        int[] antal = new int[ArrayListHolder.getKunder().size()];
-        ArrayList<Pizza> kundensPizzaer = pizzaerKøbAfKunde()[id];
+        int[] antal = new int[ArrayListHolder.getAllePizzaer().size()];
+        ArrayList<Pizza> kundensPizzaer = ArrayListHolder.getBestillinger().get(id - 1).getPizza();
         int most = 0;
         for (Pizza pizza : kundensPizzaer) {
-            if (antal[most] < antal[pizza.getNummer() - 1]) {
-                most = pizza.getNummer() - 1;
-            }
             antal[pizza.getNummer() - 1]++;
         }
+//        for (int i = 0; i < antal.length; i++) {
+//            System.out.println(antal[i]);
+//            
+//        }
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         return ArrayListHolder.getAllePizzaer().get(most);
     }
@@ -47,19 +49,19 @@ public class StatistikKunde {
         }
         return antal;
     }
-    
-    public static Bestilling getLastOrder(int id ){
-        
+
+    public static Bestilling getLastOrder(int id) {
+
         int bestillingsID = 0;
         for (Bestilling bestilling : ArrayListHolder.getBestillinger()) {
-            if(bestilling.getKundeId() == id){
+            if (bestilling.getKundeId() == id) {
                 bestillingsID = bestilling.getId();
-            } 
+            }
         }
         return ArrayListHolder.getBestillinger().get(bestillingsID);
     }
-    
-    public static double getKundebeløbBrugt(int id){
+
+    public static double getKundebeløbBrugt(int id) {
         ArrayList<Pizza> kundensPizzaer = pizzaerKøbAfKunde()[id];
         double beløb = 0;
         for (Pizza pizza : kundensPizzaer) {

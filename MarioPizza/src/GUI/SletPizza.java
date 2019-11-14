@@ -134,7 +134,6 @@ public class SletPizza extends javax.swing.JFrame {
         for (int i = 0; i < selected.size(); i++) {
             String tal = selected.get(i).replaceAll("[^0-9]+", "");
             int id = Integer.parseInt(tal);
-            System.out.println(id);
             Controller.fjernPizza(id);
         }
         loadList();

@@ -85,19 +85,14 @@ public class DBCallsOrder {
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 
-            ResultSetMetaData rsmd = resultSet.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
                 int id = resultSet.getInt("order_id");
                 String tid = resultSet.getString("order_tid");
                 int kundeId = resultSet.getInt("kunde_id");
 
                 String pizzaer = resultSet.getString("order_pizzaer");
-                String fyld = resultSet.getString("order_pris");
                 String status = resultSet.getString("order_status");
-
-                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status, id);
-
+                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status, id, kundeId);
                 ArrayListHolder.addBestilling(tempBes);
             }
 
@@ -136,7 +131,7 @@ public class DBCallsOrder {
                 String fyld = resultSet.getString("order_pris");
                 String status = resultSet.getString("order_status");
 
-                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status, id);
+                Bestilling tempBes = new Bestilling(tid, pizzaer, ArrayListHolder.getKunder().get(kundeId - 1).getNavn(), ArrayListHolder.getKunder().get(kundeId - 1).getNummer(), status, id, kundeId);
 
                 bestillinger.add(tempBes);
             }

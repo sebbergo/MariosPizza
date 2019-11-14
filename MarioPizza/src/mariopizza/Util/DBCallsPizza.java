@@ -15,12 +15,11 @@ public class DBCallsPizza {
         Connection MyConnector = null;
         Statement statement = null;
         try {
-            System.out.println("hej");
             MyConnector = DBConnector.getConnector();
             String query = "insert into pizza values (null,'" + navn + "'," + pris + ",'" + fyld + "');";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
-
+            
             statement.close();
             MyConnector.close();
         } catch (SQLException ex) {

@@ -7,9 +7,11 @@ package GUI;
 
 import mariopizza.Controllers.Controller;
 import mariopizza.Model.Bestilling;
+import mariopizza.Model.Kunde;
 import mariopizza.Util.DBCallsOrder;
 import mariopizza.Util.ArrayListHolder;
 import mariopizza.Util.ArrayListHolder;
+import mariopizza.Util.DBCallsKunde;
 
 /**
  *
@@ -204,15 +206,26 @@ public class NyBestilling extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-                    String tid = jTextField1.getText() + ":" + jTextField2.getText() ;
-                    String pizzaNummere = jTextField3.getText();
-                    String navn = jTextField4.getText();
-                    int tlfnr = Integer.parseInt(jTextField5.getText());
-                    
-                    DBCallsOrder.insertToOrder(tid, Controller.getKundeID(tlfnr, navn), pizzaNummere);
-                    Bestilling bes = new Bestilling(tid, pizzaNummere, navn, tlfnr, "Bestilte");
-                    ArrayListHolder.addBestilling(bes);
-                    goBack();
+        String tid = jTextField1.getText() + ":" + jTextField2.getText();
+        String pizzaNummere = jTextField3.getText();
+        String navn = jTextField4.getText();
+        int tlfnr = Integer.parseInt(jTextField5.getText());
+        
+        Kunde tempKunde = null;
+        if (tlfnr == 0) {
+            tempKunde = new Kunde(navn);
+            ArrayListHolder.addKunde(tempKunde);
+        } else if (ArrayListHolder.checkKundeTlf(tlfnr) != null) {
+            ArrayListHolder.checkKundeTlf(tlfnr).setNavn(navn);
+        } else {
+            tempKunde = new Kunde(tlfnr, navn);
+            ArrayListHolder.addKunde(tempKunde);
+        }
+        DBCallsKunde.insertToKunde(navn, tlfnr);
+        Bestilling bes = new Bestilling(tid, pizzaNummere, navn, tlfnr, "Bestilte", tempKunde.getId());
+        DBCallsOrder.insertToOrder(tid, tempKunde.getId(), pizzaNummere);
+        ArrayListHolder.addBestilling(bes);
+        goBack();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

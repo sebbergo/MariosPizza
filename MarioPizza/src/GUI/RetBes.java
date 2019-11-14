@@ -179,8 +179,7 @@ public class RetBes extends javax.swing.JFrame {
             String[] selectedVals = selected.get(i).split(":");
             String tal = selectedVals[1].replaceAll("[^0-9]+", "");
             int id = Integer.parseInt(tal);
-            
-            System.out.println(id);
+
             ArrayListHolder.removeBestilling(ArrayListHolder.bestillingChecker(id));
             DBCallsOrder.deleteFromPizza(id);
         }

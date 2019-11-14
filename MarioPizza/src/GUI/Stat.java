@@ -11,8 +11,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import mariopizza.Model.Pizza;
-import mariopizza.Util.ArrayListHolder;
 import mariopizza.View.StatFunctions;
 import mariopizza.Util.ArrayListHolder;
 import mariopizza.View.StatistikKunde;
@@ -115,50 +113,55 @@ public class Stat extends javax.swing.JFrame {
 
             if (!adjust) {
                 JList list = (JList) listSelectionEvent.getSource();
-                int selections[] = list.getSelectedIndices();
-                Object selectionValues[] = list.getSelectedValues();
-                for (int i = 0, n = selections.length; i < n; i++) {
-                    //hvad den skal kalde;
 
-                    seMere(selections[0]);
+                List<String> selected = jList1.getSelectedValuesList();
+
+                    String[] selectedVals = selected.get(0).split(":");
+                    String tal = selectedVals[1].replaceAll("[^0-9]+", "");
+                    int id = Integer.parseInt(tal);
+                    
+                    seMere(id);
+                    
+
                 }
             }
         }
-    };
+
+        ;
 
     private void seMere(int id) {
-        KundeInfo kundeInfo = new KundeInfo();
-        kundeInfo.setId(id);
-        kundeInfo.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(!rootPaneCheckingEnabled);
+            KundeInfo kundeInfo = new KundeInfo();
+            kundeInfo.setId(id);
+            kundeInfo.setVisible(rootPaneCheckingEnabled);
+            this.setVisible(!rootPaneCheckingEnabled);
 
-    }
-
-    public void goBack() {
-        MainMenu menu = new MainMenu();
-        menu.setVisible(rootPaneCheckingEnabled);
-        this.setVisible(!rootPaneCheckingEnabled);
-    }
-
-    public void loadAntalPizzaer() {
-        DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < StatFunctions.getAntalKøbtePizzaer().length; i++) {
-            model.addElement("Nummer: " + (i + 1) + " Solgte: " + StatFunctions.getAntalKøbtePizzaer()[i] + " Samlet beløb: " + (StatFunctions.getAntalKøbtePizzaer()[i] * ArrayListHolder.pizzaChecker(i + 1).getPris()));
         }
 
-        jList1.setModel(model);
-    }
-
-    public void loadAntalPrKunde() {
-        DefaultListModel model = new DefaultListModel();
-        int[] antal = StatistikKunde.kundeAntalKøbtePizzaer();
-        for (int i = 0; i < antal.length; i++) {
-            model.addElement("Navn: " + ArrayListHolder.getKunder().get(i).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(i).getNummer() + " Antal købt pizzaer: " + antal[i]);
+        public void goBack() {
+            MainMenu menu = new MainMenu();
+            menu.setVisible(rootPaneCheckingEnabled);
+            this.setVisible(!rootPaneCheckingEnabled);
         }
 
-        jList1.setModel(model);
+        public void loadAntalPizzaer() {
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < StatFunctions.getAntalKøbtePizzaer().length; i++) {
+                model.addElement("Nummer: " + (i + 1) + " Solgte: " + StatFunctions.getAntalKøbtePizzaer()[i] + " Samlet beløb: " + (StatFunctions.getAntalKøbtePizzaer()[i] * ArrayListHolder.pizzaChecker(i + 1).getPris()));
+            }
 
-    }
+            jList1.setModel(model);
+        }
+
+        public void loadAntalPrKunde() {
+            DefaultListModel model = new DefaultListModel();
+            int[] antal = StatistikKunde.kundeAntalKøbtePizzaer();
+            for (int i = 0; i < antal.length; i++) {
+                model.addElement("ID: " + ArrayListHolder.getKunder().get(i).getId() + " Navn: " + ArrayListHolder.getKunder().get(i).getNavn() + " Telefon: " + ArrayListHolder.getKunder().get(i).getNummer() + " Antal købt pizzaer: " + antal[i]);
+            }
+
+            jList1.setModel(model);
+
+        }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -175,40 +178,40 @@ public class Stat extends javax.swing.JFrame {
         loadAntalPrKunde();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+            /**
+             * @param args the command line arguments
+             */
+            public static void main(String args[]) {
+                /* Set the Nimbus look and feel */
+                //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+                /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                 */
+                try {
+                    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                } catch (ClassNotFoundException ex) {
+                    java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                    java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Stat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+                //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Stat().setVisible(true);
+                /* Create and display the form */
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new Stat().setVisible(true);
+                    }
+                });
             }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

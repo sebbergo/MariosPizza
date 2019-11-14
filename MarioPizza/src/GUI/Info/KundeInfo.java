@@ -23,10 +23,10 @@ public class KundeInfo extends javax.swing.JFrame {
      */
 
     public void setId(int kundeId) {
-        int id = kundeId + 1;
-        jLabel1.setText("ID: " + id);
+        int id = kundeId - 1;
+        jLabel1.setText("ID: " + kundeId);
         jLabel2.setText("Navn: " + ArrayListHolder.getKunder().get(id).getNavn());
-        jLabel3.setText("ID: " + ArrayListHolder.getKunder().get(id).getNummer());
+        jLabel3.setText("Telefon nummer: " + ArrayListHolder.getKunder().get(id).getNummer());
         jLabel4.setText("Favorit pizza: " + StatistikKunde.getKundeFavPiz(id).getNavn() + " | Nummer: " + StatistikKunde.getKundeFavPiz(id).getNummer());
         jLabel5.setText("Antal købte pizzaer: " + StatistikKunde.kundeAntalKøbtePizzaer()[id]);
         jLabel6.setText("Last order tid: " + StatistikKunde.getLastOrder(id).getTid() + " Pizzaer: " + StatistikKunde.getLastOrder(id).getPizzaerString());

@@ -20,10 +20,10 @@ public class Bestilling implements Comparable<Object> {
     private String status = "";
     private static int counter;
 
-    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status) {
+    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status, int kundeId) {
         this.tid = tid;
         this.id = ++counter;
-        this.kundeId = Controller.getKundeID(tlfnr, navn);
+        this.kundeId = kundeId;
         this.pizzaerString = pizzaNummer;
         this.status = status;
 
@@ -37,10 +37,11 @@ public class Bestilling implements Comparable<Object> {
         }
     }
 
-    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status, int id) {
+    public Bestilling(String tid, String pizzaNummer, String navn, int tlfnr, String status, int id, int kundeId) {
         this.tid = tid;
         this.id = id;
-        this.kundeId = Controller.getKundeID(tlfnr, navn);
+        this.counter = id;
+        this.kundeId = kundeId;
         this.pizzaerString = pizzaNummer;
         this.status = status;
 
