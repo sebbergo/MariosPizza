@@ -80,7 +80,7 @@ public class Menu extends javax.swing.JFrame {
     public void loadList() {
         DefaultListModel model = new DefaultListModel();
         for (Pizza pizza : ArrayListHolder.getAllePizzaer()) {
-            model.addElement("ID: " + pizza.getNummer() + " Navn: " + pizza.getNavn() + " Fyld: " + pizza.getFyld() + " Pris: " + pizza.getPris() + "Kr.");
+            model.addElement("ID: " + pizza.getNummer() + " Navn: " + pizza.getNavn() + " Fyld: " + pizza.getFyld() + " Pris: " + pizza.getPris() + " Kr.");
         }
 
         jList1.setModel(model);

@@ -47,7 +47,7 @@ public class MainMenu extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(700, 700));
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton1.setText("lave ny bestilling");
+        jButton1.setText("Lave ny bestilling");
         jButton1.setMaximumSize(new java.awt.Dimension(70, 23));
         jButton1.setMinimumSize(new java.awt.Dimension(70, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +57,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton2.setText("slette en bestilling");
+        jButton2.setText("Ret en bestilling");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -65,7 +65,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton8.setText("tilføje en ny pizza");
+        jButton8.setText("Tilføje en ny pizza");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -73,7 +73,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton9.setText("slette en pizza");
+        jButton9.setText("Slette en pizza");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -81,7 +81,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton10.setText("se statistik");
+        jButton10.setText("Se statistik");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -89,7 +89,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton11.setText("se menukort");
+        jButton11.setText("Se menukort");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -98,7 +98,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton12.setBackground(new java.awt.Color(255, 20, 20));
         jButton12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton12.setText("lukke programmet");
+        jButton12.setText("Luk programmet");
         jButton12.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, javax.swing.UIManager.getDefaults().getColor("ToolBar.dockingForeground"), null));
         jButton12.setBorderPainted(false);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
